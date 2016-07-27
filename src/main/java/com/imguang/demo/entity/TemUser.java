@@ -1,4 +1,4 @@
-package com.imguang.demo.model;
+package com.imguang.demo.entity;
 
 
 /**

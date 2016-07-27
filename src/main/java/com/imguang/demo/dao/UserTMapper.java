@@ -1,5 +1,6 @@
 package com.imguang.demo.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.imguang.demo.model.UserT;
@@ -20,4 +21,6 @@ public interface UserTMapper {
     UserT seletcByUserName(String userName);
     
     UserT seletcByUserNamePassword(Map<String, String> map);
+    
+    List<UserT> selectAllUserTs();
 }

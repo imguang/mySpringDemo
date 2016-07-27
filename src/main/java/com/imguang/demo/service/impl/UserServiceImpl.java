@@ -1,6 +1,8 @@
 package com.imguang.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -48,6 +50,21 @@ public class UserServiceImpl implements IUserService {
 		UserT userT = userTMapper.seletcByUserNamePassword(temMap);
 		if (userT != null && userT.getPassword().equals(password)
 				&& userT.getUserName().equals(user_name)) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<UserT> selectAllUserTs() {
+		List<UserT> userTs = new ArrayList<UserT>();
+		userTs.addAll(userTMapper.selectAllUserTs());
+		return userTs;
+	}
+
+	@Override
+	public boolean deleteByPrimaryKey(int id) {
+		if (userTMapper.deleteByPrimaryKey(id) != 0) {
 			return true;
 		}
 		return false;
