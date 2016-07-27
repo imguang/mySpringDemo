@@ -21,7 +21,13 @@
 <!--jquery.validate-->
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+	function add_form() {
+		$("#add_form").submit();
+	}
+</script>
 </head>
+
 
 <body>
 	<div class="container">
@@ -59,8 +65,9 @@
 								<td>${user.userName}</td>
 								<td>${user.password}</td>
 								<td>${user.email}</td>
-								<td><a class="btn btn-danger" href="/admin/delete/${user.id}">删除</a>
-									<a class="btn btn-primary" href="/admin/reset/${user.id}">重置密码</a></td>
+								<td><a class="btn btn-danger"
+									href="/admin/delete/${user.id}">删除</a> <a
+									class="btn btn-primary" href="/admin/reset/${user.id}">重置密码</a></td>
 							</tr>
 						</c:forEach>
 
@@ -88,22 +95,30 @@
 								<h4 class="modal-title" id="myModalLabel">添加账号</h4>
 							</div>
 							<div class="modal-body">
-								<form role="form">
+								<form role="form" action="/admin/add" method="post"
+									id="add_form">
 									<div class="form-group">
 										<label for="exampleInputEmail1">账号：</label><input type="text"
-											class="form-control" id="userName" placeholder="账号" />
+											class="form-control" id="userName" name="userName"
+											placeholder="账号" />
 									</div>
 									<div class="form-group">
 										<label for="exampleInputPassword1">密码：</label><input
 											type="password" class="form-control" id="password"
-											placeholder="密码" />
+											name="password" placeholder="密码" />
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">Email：</label><input
+											type="text" class="form-control" id="email" name="email"
+											placeholder="email" />
 									</div>
 								</form>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">取消</button>
-								<button type="button" class="btn btn-primary">正价</button>
+								<button type="button" class="btn btn-primary"
+									onclick="add_form()">增加</button>
 							</div>
 						</div>
 

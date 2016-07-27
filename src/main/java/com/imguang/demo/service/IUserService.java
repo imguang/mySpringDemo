@@ -14,6 +14,8 @@ public interface IUserService {
 	public boolean selectUserByNameAndPassword(String user_name, String password);
 
 	public List<UserT> selectAllUserTs();
-	
+
 	public boolean deleteByPrimaryKey(int id);
+
+	public boolean resetPasswordByPrimaryKey(int id);
 }

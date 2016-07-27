@@ -97,6 +97,11 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+	<update id="resetPasswordByPrimaryKey" parameterType="java.lang.Integer">
+		update
+		user_t set password = '88888'
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 	<update id="updateByPrimaryKey" parameterType="com.imguang.demo.model.UserT">
 		update user_t
 		set

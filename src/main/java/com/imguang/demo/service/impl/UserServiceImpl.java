@@ -70,4 +70,12 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 
+	@Override
+	public boolean resetPasswordByPrimaryKey(int id) {
+		if (userTMapper.resetPasswordByPrimaryKey(id) != 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

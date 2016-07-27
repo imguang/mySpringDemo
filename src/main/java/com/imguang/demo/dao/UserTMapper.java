@@ -8,6 +8,8 @@ import com.imguang.demo.model.UserT;
 public interface UserTMapper {
     int deleteByPrimaryKey(Integer id);
 
+    int resetPasswordByPrimaryKey(Integer id);
+    
     int insert(UserT record);
 
     int insertSelective(UserT record);
