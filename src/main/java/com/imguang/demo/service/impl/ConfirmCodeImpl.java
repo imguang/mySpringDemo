@@ -95,7 +95,7 @@ public class ConfirmCodeImpl implements IConfirmCode {
 				response.getOutputStream());
 		token = token.toLowerCase();
 		session.setAttribute("captchaToken", token);
-		System.out.println("当前的SessionID=" + session.getId() + "，验证码=" + token);
+		System.out.println("当前sessionid=" + session.getId() + "，验证码=" + token);
 	}
 
 	/*

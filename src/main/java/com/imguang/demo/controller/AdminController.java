@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.imguang.demo.model.UserT;
-import com.imguang.demo.service.IUserService;
 import com.imguang.demo.service.impl.UserServiceImpl;
 
 @Controller

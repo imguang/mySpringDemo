@@ -15,6 +15,9 @@ $().ready(function() {
 			}
 		},
 		submitHandler : function(form) {
+			var a = $("#loginPassword").val();
+			var b = $("#loginUserName").val();
+			$("#loginPassword").val(hex_sha1(a+b));
 			form.submit();
 		}
 	});
@@ -52,6 +55,10 @@ $().ready(function() {
 			}
 		},
 		submitHandler : function(form) {
+			var a = $("#registPassword").val();
+			var b = $("#registUserName").val();
+
+			$("#registPassword").val(hex_sha1(a + b));
 			form.submit();
 		}
 	});
@@ -69,7 +76,6 @@ $(function() {
 
 function changeCode() {
 	var timestamp = new Date().getTime();
-	$("#kaptchaImage").hide().attr('src',
-			'/count/img?' + timestamp).fadeIn();
+	$("#kaptchaImage").hide().attr('src', '/count/img?' + timestamp).fadeIn();
 	event.cancelBubble = true;
 }

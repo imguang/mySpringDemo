@@ -28,6 +28,8 @@
 <!--jquery.validate-->
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/sha1.js"></script>
 <style type="text/css">
 body {
 	background: url(<%=path%>/resources/img/4.jpg) no-repeat;
@@ -87,12 +89,14 @@ input[type="text"], input[type="password"] {
 					<div class="form-group">
 						<i class="fa fa-user fa-lg"></i> <input
 							class="form-control required" type="text" placeholder="Username"
-							name="userName" autofocus="autofocus" maxlength="20" />
+							name="userName" autofocus="autofocus" maxlength="20"
+							id="loginUserName" />
 					</div>
 					<div class="form-group">
 						<i class="fa fa-lock fa-lg"></i> <input
 							class="form-control required" type="password"
-							placeholder="Password" name="password" maxlength="8" />
+							placeholder="Password" name="password" maxlength="8"
+							id="loginPassword" />
 					</div>
 					<div class="form-group">
 						<label class="checkbox"> <input type="checkbox"
@@ -116,12 +120,12 @@ input[type="text"], input[type="password"] {
 					<div class="form-group">
 						<i class="fa fa-user fa-lg"></i> <input
 							class="form-control required" type="text" placeholder="Username"
-							name="userName" autofocus="autofocus" />
+							name="userName" autofocus="autofocus" id="registUserName" />
 					</div>
 					<div class="form-group">
 						<i class="fa fa-lock fa-lg"></i> <input
 							class="form-control required" type="password"
-							placeholder="Password" id="register_password" name="password" />
+							placeholder="Password" name="password" id="registPassword" />
 					</div>
 					<div class="form-group">
 						<i class="fa fa-check fa-lg"></i> <input
@@ -135,8 +139,11 @@ input[type="text"], input[type="password"] {
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<input class="form-control required" type="text" placeholder="验证码" name="code" />
-							<div class="input-group-addon"><img id="kaptchaImage" src="/count/img" onclick="changeCode()"/></div>
+							<input class="form-control required" type="text"
+								placeholder="验证码" name="code" />
+							<div class="input-group-addon">
+								<img id="kaptchaImage" src="/count/img" onclick="changeCode()" />
+							</div>
 						</div>
 						<a href="#" onclick="changeCode()">看不清楚？换一张！</a>
 					</div>

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 import com.imguang.demo.dao.UserTMapper;
@@ -72,7 +73,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public boolean resetPasswordByPrimaryKey(int id) {
-		if (userTMapper.resetPasswordByPrimaryKey(id) != 0) {
+		UserT userT = userTMapper.selectByPrimaryKey(id);
+		userT.setPassword(DigestUtils.sha1Hex("88888" + userT.getUserName()));
+		if (userTMapper.updateByPrimaryKey(userT) != 0) {
 			return true;
 		}
 		return false;
