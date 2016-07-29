@@ -28,6 +28,7 @@
 <!--jquery.validate-->
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-form.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sha1.js"></script>
 <style type="text/css">
@@ -70,20 +71,18 @@ input[type="text"], input[type="password"] {
 </head>
 
 <body>
-	<!--
-			基础知识：
-			网格系统:通过行和列布局
-			行必须放在container内
-			手机用col-xs-*
-			平板用col-sm-*
-			笔记本或普通台式电脑用col-md-*
-			大型设备台式电脑用col-lg-*
-			为了兼容多个设备，可以用多个col-*-*来控制；
-		-->
 	<div class="container">
+		<div class="modal fade" id="myModal" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" id="show_content">这里是弹窗的内容</div>
+				</div>
+			</div>
+		</div>
 		<div class="form row" id="div1">
 			<form class="form-horizontal col-sm-offset-3 col-md-offset-3"
-				id="login_form" method="post" action="/count/login">
+				id="login_form">
 				<h3 class="form-title">Login to your account</h3>
 				<div class="col-sm-9 col-md-9">
 					<div class="form-group">

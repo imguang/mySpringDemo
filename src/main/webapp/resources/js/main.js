@@ -1,3 +1,21 @@
+function showResponse(data) {
+	var state = data.state;
+	switch (state) {
+	case "1":
+		$("#show_content").text("登录成功");
+		window.location.href = "/main/index";
+		break;
+	case "2":
+		$("#show_content").text("用户名不存在");
+		break;
+	case "3":
+		$("#show_content").text("密码错误");
+		break;
+	}
+	$("#myModal").modal('show');
+	setTimeout("$('#myModal').modal('hide')", 1000);
+}
+
 $().ready(function() {
 	$("#login_form").validate({
 		rules : {
@@ -17,8 +35,14 @@ $().ready(function() {
 		submitHandler : function(form) {
 			var a = $("#loginPassword").val();
 			var b = $("#loginUserName").val();
-			$("#loginPassword").val(hex_sha1(a+b));
-			form.submit();
+			$("#loginPassword").val(hex_sha1(a + b));
+			$(form).ajaxSubmit({
+				type : "post",
+				dataType : "json",
+				url : "/count/login",
+				// beforeSubmit: showRequest,
+				success : showResponse
+			});
 		}
 	});
 	$("#register_form").validate({

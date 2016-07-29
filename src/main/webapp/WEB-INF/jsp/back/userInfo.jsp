@@ -21,8 +21,13 @@
 <!--jquery.validate-->
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/sha1.js"></script>
 <script type="text/javascript">
 	function add_form() {
+		var a = $("#loginPassword").val();
+		var b = $("#loginUserName").val();
+		$("#loginPassword").val(hex_sha1(a + b));
 		$("#add_form").submit();
 	}
 </script>
@@ -99,13 +104,13 @@
 									id="add_form">
 									<div class="form-group">
 										<label for="exampleInputEmail1">账号：</label><input type="text"
-											class="form-control" id="userName" name="userName"
-											placeholder="账号" />
+											class="form-control" name="userName" placeholder="账号"
+											id="loginUserName" />
 									</div>
 									<div class="form-group">
 										<label for="exampleInputPassword1">密码：</label><input
-											type="password" class="form-control" id="password"
-											name="password" placeholder="密码" />
+											type="password" class="form-control" name="password"
+											placeholder="密码" id="loginPassword" />
 									</div>
 									<div class="form-group">
 										<label for="exampleInputPassword1">Email：</label><input
