@@ -1,6 +1,11 @@
 package com.imguang.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.imguang.demo.model.Product;
 import com.imguang.demo.model.UserT;
+import com.imguang.demo.service.impl.ProductServiceImpl;
 import com.imguang.demo.service.impl.UserServiceImpl;
 
 @Controller
@@ -18,6 +28,8 @@ public class AdminController {
 
 	@Resource
 	UserServiceImpl userServiceImpl;
+	@Resource
+	ProductServiceImpl ProductServiceImpl;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String showUserInfo(Model model) {
@@ -53,4 +65,25 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
+	@RequestMapping(value = "/addPro")
+	public String addPro() {
+		return "back/addPro";
+	}
+
+	@RequestMapping(value = "/dealAddPro", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> dealAddPro(
+			@RequestParam("img") MultipartFile file, Product product,
+			HttpServletRequest request, HttpServletResponse response) {
+
+		boolean re = ProductServiceImpl.transferFileAndInsert(file, request
+				.getSession().getServletContext().getRealPath("/"), product);
+		Map<String, String> map = new HashMap<String, String>();
+		if (re) {
+			map.put("state", "1");
+		} else {
+			map.put("state", "2");
+		}
+		return map;
+	}
 }

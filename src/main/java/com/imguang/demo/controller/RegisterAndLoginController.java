@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,8 @@ public class RegisterAndLoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> login(String userName, String password) {
+	public Map<String, String> login(String userName, String password,
+			HttpServletRequest request) {
 		System.out.println(userName + password);
 		Map<String, String> map = new HashMap<String, String>();
 		boolean re = UserServiceImpl.selectUserByName(userName);
@@ -47,11 +49,15 @@ public class RegisterAndLoginController {
 				map.put("state", IconstLogin.STATE_PASSWORDREJECT);
 			} else {
 				map.put("state", IconstLogin.STATE_SUCCESS);
+				HttpSession httpSession = request.getSession(false);
+				if (httpSession == null) {
+					httpSession = request.getSession();
+				}
+				httpSession.setAttribute("userName", userName);
 			}
 		}
 		return map;
 	}
-
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(UserT userT, String code, HttpServletRequest request) {

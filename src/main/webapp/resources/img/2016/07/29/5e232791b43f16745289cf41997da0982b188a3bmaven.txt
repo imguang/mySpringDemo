@@ -1,0 +1,59 @@
+Maven 
+
+mvn -v
+mvn complie 编译
+mvn test 单元测试
+mvn package 将项目打成jar包
+mvn clean 清空class文件 删除target
+mvn install 将项目jar 放到本地jar包仓库
+
+archetype:gennerate
+
+-DgroupId=组织名，公司网址的反写+项目名
+
+-DartifactId=项目名-模块名
+
+-Dversion=版本号
+
+-Dpackage=代码所存在的包名
+
+添加镜像仓库，修改本地仓库位置
+conf/settings.xml
+<localRepository>F:/jar/maven_repo</localRepository>
+<mirror>
+	<id>maven.net.cn</id>
+	<mirrorOf>central</mirrorOf>
+	<name>central mirror in china</name>
+	<url>http://maven.oschina.net/content/groups/public/</url>
+ </mirror>
+
+ 生命周期
+ clean
+ pre-clean clean post-clean
+ default
+ compile test package install
+ site 根据pom生成站点
+ pre-site site post-site site-deploy(发布生成的站点到服务器上)
+
+ 插件
+ <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>			
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+依赖传递： @re
+聚合继承
