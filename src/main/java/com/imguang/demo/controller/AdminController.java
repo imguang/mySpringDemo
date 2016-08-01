@@ -65,24 +65,32 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	@RequestMapping(value = "/addPro")
-	public String addPro() {
-		return "back/addPro";
-	}
-
+	/*
+	 * 添加商品
+	 */
 	@RequestMapping(value = "/dealAddPro", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, String> dealAddPro(
 			@RequestParam("img") MultipartFile file, Product product,
 			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(product.toString());
-		String re = ProductServiceImpl.transferFileAndInsert(file, request
-				.getSession().getServletContext().getRealPath("/"), product);
 		Map<String, String> map = new HashMap<String, String>();
+		String originString = file.getOriginalFilename();
+		// 文件没上传或上传失败
+		if (originString == null || originString.equals("")) {
+			map.put("state", "2");
+			return map;
+		}
+		String path = ProductServiceImpl.transferFile(file, request, response);
+		product.setgImgurl(path);
+		System.out.println(product.toString());
+		String re = ProductServiceImpl.insertProduct(product);
 		map.put("state", re);
 		return map;
 	}
 
+	/*
+	 * 商品首页
+	 */
 	@RequestMapping(value = "/productInfo")
 	public String showProductInfo(Model model) {
 		model.addAttribute("products", ProductServiceImpl.selectAllProducts());

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,13 +25,72 @@ public class ProductServiceImpl implements IProductService {
 	ProductMapper productMapper;
 
 	@Override
-	public String transferFileAndInsert(MultipartFile file, String realPath,
-			Product product) {
-		String originString = file.getOriginalFilename();
-		// 文件没上传或上传失败
-		if (originString == null || originString.equals("")) {
-			return "2";
+	public String insertProduct(Product product) {
+		int re = productMapper.insert(product);
+		if (re != 0) {
+			return "1";
 		}
+		return "2";
+	}
+
+	@Override
+	public List<Product> selectAllProducts() {
+		return productMapper.selectAllProducts();
+	}
+
+	@Override
+	public String deleteOneProducts(int id, HttpServletRequest request,
+			HttpServletResponse response) {
+		Product temProduct = productMapper.selectByPrimaryKey(id);
+		if (temProduct == null) {
+			return "3";
+		}
+		String realPath = request.getSession().getServletContext()
+				.getRealPath("/")
+				+ temProduct.getgImgurl();
+		// 首先删除图片
+		File file2 = new File(realPath);
+		file2.delete();
+		int re = productMapper.deleteByPrimaryKey(id);
+		if (re != 0) {
+			return "1";
+		}
+		return "2";
+	}
+
+	@Override
+	public String updateProduct(MultipartFile file, Product product,
+			HttpServletRequest request, HttpServletResponse response) {
+		Product temProduct = productMapper.selectByPrimaryKey(product.getId());
+		if (temProduct == null) {
+			return "3";
+		}
+		String originString = file.getOriginalFilename();
+		if (originString == null || originString.equals("")) {
+			product.setgImgurl(temProduct.getgImgurl());
+		} else {// 如果要进行图片更改
+			String realPath = request.getSession().getServletContext()
+					.getRealPath("/")
+					+ temProduct.getgImgurl();
+			// 首先删除图片
+			File file2 = new File(realPath);
+			file2.delete();
+			// 转存文件
+			product.setgImgurl(transferFile(file, request, response));
+		}
+		int i = productMapper.updateByPrimaryKey(product);
+		if (i > 0) {
+			return "1";
+		}
+		return "2";
+	}
+
+	@Override
+	public String transferFile(MultipartFile file, HttpServletRequest request,
+			HttpServletResponse response) {
+		String realPath = request.getSession().getServletContext()
+				.getRealPath("/");
+		String originString = file.getOriginalFilename();
 		// 文件后缀
 		String suffix = originString.substring(originString.lastIndexOf("."));
 		// @TODO 后缀判断
@@ -50,21 +111,11 @@ public class ProductServiceImpl implements IProductService {
 				}
 				// 转存文件
 				file.transferTo(oneFile);
-				product.setgImgurl("/resources/img/" + datePath + logImageName);
-				int re = productMapper.insert(product);
-				if (re != 0) {
-					return "1";
-				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "2";
-	}
-
-	@Override
-	public List<Product> selectAllProducts() {
-		return productMapper.selectAllProducts();
+		return "/resources/img/" + datePath + logImageName;
 	}
 
 }

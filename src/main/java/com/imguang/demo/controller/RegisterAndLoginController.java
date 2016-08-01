@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.imguang.demo.model.UserT;
 import com.imguang.demo.service.impl.ConfirmCodeImpl;
 import com.imguang.demo.service.impl.UserServiceImpl;
-import com.imguang.demo.util.IconstLogin;
+import com.imguang.demo.util.Iconst.IconstLogin;
 
 @Controller
 @RequestMapping("/count")

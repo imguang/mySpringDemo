@@ -1,5 +1,5 @@
+com\imguang\demo\model\UserT.class
+com\imguang\demo\service\impl\UserServiceImpl.class
 com\imguang\demo\dao\UserTMapper.class
 com\imguang\demo\service\IUserService.class
-com\imguang\demo\model\UserT.class
 com\imguang\demo\controller\RegisterAndLoginController.class
-com\imguang\demo\service\impl\UserServiceImpl.class

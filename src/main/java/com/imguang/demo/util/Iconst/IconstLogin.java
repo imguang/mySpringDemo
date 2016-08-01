@@ -1,4 +1,4 @@
-package com.imguang.demo.util;
+package com.imguang.demo.util.Iconst;
 
 /*
  * 登录状态约定
