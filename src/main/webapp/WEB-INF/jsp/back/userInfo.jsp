@@ -23,14 +23,14 @@
 	src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/sha1.js"></script>
-<script type="text/javascript">
-	function add_form() {
-		var a = $("#loginPassword").val();
-		var b = $("#loginUserName").val();
-		$("#loginPassword").val(hex_sha1(a + b));
-		$("#add_form").submit();
-	}
-</script>
+
+<style>
+.table th, .table td {
+	text-align: center;
+	vertical-align: middle !important;
+	height: 38px;
+}
+</style>
 </head>
 
 
@@ -40,15 +40,11 @@
 			<div class="col-md-12 column">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#">用户管理</a></li>
+					<li><a href="/admin/productInfo">商品管理</a></li>
 					<li><a href="#">load...</a></li>
-					<li class="pull-right">
-						<button href="#modal-container-900242" class="btn btn-info"
-							data-toggle="modal">新增</button>
-					</li>
+					<li class="pull-right"><a href="#modal-container-900242"
+						data-toggle="modal">新增</a></li>
 				</ul>
-				<div>
-					<form class=""></form>
-				</div>
 				<table class="table">
 					<thead>
 						<tr>
@@ -133,5 +129,13 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function add_form() {
+			var a = $("#loginPassword").val();
+			var b = $("#loginUserName").val();
+			$("#loginPassword").val(hex_sha1(a + b));
+			$("#add_form").submit();
+		}
+	</script>
 </body>
 </html>

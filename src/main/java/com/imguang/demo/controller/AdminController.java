@@ -75,15 +75,17 @@ public class AdminController {
 	public Map<String, String> dealAddPro(
 			@RequestParam("img") MultipartFile file, Product product,
 			HttpServletRequest request, HttpServletResponse response) {
-
-		boolean re = ProductServiceImpl.transferFileAndInsert(file, request
+		System.out.println(product.toString());
+		String re = ProductServiceImpl.transferFileAndInsert(file, request
 				.getSession().getServletContext().getRealPath("/"), product);
 		Map<String, String> map = new HashMap<String, String>();
-		if (re) {
-			map.put("state", "1");
-		} else {
-			map.put("state", "2");
-		}
+		map.put("state", re);
 		return map;
+	}
+
+	@RequestMapping(value = "/productInfo")
+	public String showProductInfo(Model model) {
+		model.addAttribute("products", ProductServiceImpl.selectAllProducts());
+		return "back/productInfo";
 	}
 }

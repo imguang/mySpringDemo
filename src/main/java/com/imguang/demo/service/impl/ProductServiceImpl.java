@@ -3,10 +3,11 @@ package com.imguang.demo.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,36 +23,48 @@ public class ProductServiceImpl implements IProductService {
 	ProductMapper productMapper;
 
 	@Override
-	public boolean transferFileAndInsert(MultipartFile file, String realPath,
+	public String transferFileAndInsert(MultipartFile file, String realPath,
 			Product product) {
-		System.out.println(product);
+		String originString = file.getOriginalFilename();
+		// 文件没上传或上传失败
+		if (originString == null || originString.equals("")) {
+			return "2";
+		}
+		// 文件后缀
+		String suffix = originString.substring(originString.lastIndexOf("."));
+		// @TODO 后缀判断
+		// 生成文件名
+		String logImageName = UUID.randomUUID().toString() + suffix;
 		String datePath = DateFormatUtil.getFormat(new Date());
 		// 文件保存路径
 		String filePath = realPath + "/resources/img/" + datePath;
-		String fileName = DigestUtils.sha1Hex(product.toString())
-				+ file.getOriginalFilename();
 		File oneFile = new File(filePath);
 		try {
 			if (!file.isEmpty()) {
 				if (!oneFile.exists()) {
 					oneFile.mkdirs();
 				}
-				oneFile = new File(filePath + fileName);
+				oneFile = new File(filePath + logImageName);
 				if (!oneFile.exists()) {
 					oneFile.createNewFile();
 				}
 				// 转存文件
 				file.transferTo(oneFile);
-				product.setgImgurl("/resources/img/" + datePath + fileName);
+				product.setgImgurl("/resources/img/" + datePath + logImageName);
 				int re = productMapper.insert(product);
 				if (re != 0) {
-					return true;
+					return "1";
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return "2";
+	}
+
+	@Override
+	public List<Product> selectAllProducts() {
+		return productMapper.selectAllProducts();
 	}
 
 }
