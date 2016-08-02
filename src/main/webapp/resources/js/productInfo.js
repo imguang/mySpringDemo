@@ -1,3 +1,4 @@
+var href = "'/admin/productInfo'";
 function addPro_form() {
 	var formData = new FormData($("#addPro_form")[0]);
 	$.ajax({
@@ -14,7 +15,7 @@ function addPro_form() {
 			switch (state) {
 			case "1":
 				$("#show_content").text("上传成功");
-				setTimeout("window.location.href = '/admin/productInfo'", 500);
+				setTimeout("window.location.href = " + href, 700);
 				break;
 			case "2":
 				$("#show_content").text("上传失败");
@@ -29,13 +30,12 @@ function addPro_form() {
 	});
 }
 
-function editModel(obj, id) {
-	var tds = $(obj).parent().parent().find('td');
+function editModel(id,name,price,num,description) {
 	$('#idEdit').val(id);
-	$('#gNameEdit').val(tds.eq(2).text());
-	$('#gPriceEdit').val(tds.eq(3).text());
-	$('#gNumEdit').val(tds.eq(4).text());
-	$('#gDescriptionEdit').val(tds.eq(5).text());
+	$('#gNameEdit').val(name);
+	$('#gPriceEdit').val(price);
+	$('#gNumEdit').val(num);
+	$('#gDescriptionEdit').val(description);
 	$('#modal-container-edit').modal('show');
 }
 
@@ -52,14 +52,14 @@ function deleteOneProduct(id) {
 			switch (state) {
 			case "1":
 				$("#show_content").text("删除成功");
-				setTimeout("window.location.href = '/admin/productInfo'", 500);
+				setTimeout("window.location.href = " + href, 700);
 				break;
 			case "2":
 				$("#show_content").text("删除失败");
 				break;
 			case "3":
 				$("#show_content").text("找不到该商品");
-				setTimeout("window.location.href = '/admin/productInfo'", 500);
+				setTimeout("window.location.href = " + href, 700);
 				break;
 			}
 			$("#myModal").modal('show');
@@ -87,7 +87,7 @@ function editPro_form() {
 			switch (state) {
 			case "1":
 				$("#show_content").text("修改成功");
-				setTimeout("window.location.href = '/admin/productInfo'", 500);
+				setTimeout("window.location.href = " + href, 700);
 				break;
 			case "2":
 				$("#show_content").text("修改失败");

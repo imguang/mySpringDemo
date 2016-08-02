@@ -1,6 +1,8 @@
 package com.imguang.demo.controller.ajaxController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -45,5 +47,25 @@ public class backProductController {
 				response);
 		reMap.put("state", re);
 		return reMap;
+	}
+
+	/*
+	 * 分页请求商品信息
+	 */
+	@RequestMapping(value = "/selectLimitProduct", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> temTest(int limit, int offset) {
+		Map<String, Object> temMap = new HashMap<String, Object>();
+		int cnt = productServiceImpl.selectProductCnt();
+		List<Product> products = new ArrayList<Product>();
+		products.addAll(productServiceImpl.selectLimit(limit, offset));
+		for (Product product : products) {
+			product.setgImgurl("<img src='" + product.getgImgurl()
+					+ "' alt='30x30'/>");
+		}
+		temMap.put("total", cnt);
+		temMap.put("rows", products);
+		return temMap;
+
 	}
 }

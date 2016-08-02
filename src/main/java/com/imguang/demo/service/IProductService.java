@@ -14,7 +14,8 @@ public interface IProductService {
 
 	public List<Product> selectAllProducts();
 
-	public String deleteOneProducts(int id,HttpServletRequest request, HttpServletResponse response);
+	public String deleteOneProducts(int id, HttpServletRequest request,
+			HttpServletResponse response);
 
 	public String transferFile(MultipartFile file, HttpServletRequest request,
 			HttpServletResponse response);
@@ -22,4 +23,7 @@ public interface IProductService {
 	public String updateProduct(MultipartFile file, Product product,
 			HttpServletRequest request, HttpServletResponse response);
 
+	public int selectProductCnt();
+
+	public List<Product> selectLimit(int limit, int offset);
 }

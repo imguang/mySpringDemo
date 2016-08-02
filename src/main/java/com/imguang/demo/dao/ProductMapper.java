@@ -1,6 +1,7 @@
 package com.imguang.demo.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.imguang.demo.model.Product;
 
@@ -20,4 +21,8 @@ public interface ProductMapper {
 	int updateByPrimaryKey(Product record);
 
 	List<Product> selectAllProducts();
+
+	int selectProductCnt();
+
+	List<Product> selectLimit(Map<String, Object> maps);
 }

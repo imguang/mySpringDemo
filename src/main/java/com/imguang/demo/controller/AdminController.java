@@ -90,10 +90,19 @@ public class AdminController {
 
 	/*
 	 * 商品首页
-	 */
+	 * abandoned
+	 
 	@RequestMapping(value = "/productInfo")
 	public String showProductInfo(Model model) {
 		model.addAttribute("products", ProductServiceImpl.selectAllProducts());
+		return "back/temProductInfo";
+	}*/
+
+	/*
+	 * 商品首页测试
+	 */
+	@RequestMapping(value = "/productInfo")
+	public String test() {
 		return "back/productInfo";
 	}
 }

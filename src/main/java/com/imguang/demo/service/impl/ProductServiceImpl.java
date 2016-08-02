@@ -2,8 +2,11 @@ package com.imguang.demo.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -118,4 +121,18 @@ public class ProductServiceImpl implements IProductService {
 		return "/resources/img/" + datePath + logImageName;
 	}
 
+	@Override
+	public int selectProductCnt() {
+		return productMapper.selectProductCnt();
+	}
+
+	@Override
+	public List<Product> selectLimit(int limit, int offset) {
+		Map<String, Object> maps = new HashMap<String, Object>();
+		List<Product> lists = new ArrayList<Product>();
+		maps.put("limit", limit);
+		maps.put("offset", offset);
+		lists.addAll(productMapper.selectLimit(maps));
+		return lists;
+	}
 }
