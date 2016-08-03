@@ -6,19 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<link
-	href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet">
-<!--font-awesome 核心我CSS 文件-->
-<link
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/bootstrap-table.css" />
+<!-- <link
 	href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<!-- 在bootstrap.min.js 之前引入 -->
-<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-<!-- Bootstrap 核心 JavaScript 文件 -->
-<script
-	src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<!--jquery.validate-->
+	rel="stylesheet"> -->
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/jquery-3.0.0.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/bootstrap-table.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/resources/js/bootstrap-table-zh-CN.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
 <script type="text/javascript"
@@ -45,47 +47,15 @@
 					<li class="pull-right"><a href="#modal-container-900242"
 						data-toggle="modal">新增</a></li>
 				</ul>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>编号</th>
-							<th>用户名</th>
-							<th>密码</th>
-							<th>邮箱</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${users}" var="user" varStatus="status">
 
-							<tr
-								<c:if test="${(status.index + 1) % 2 == 0 }">
-								 class="active"
-							</c:if>>
-								<td>${status.index+1}</td>
-								<td>${user.userName}</td>
-								<td>${user.password}</td>
-								<td>${user.email}</td>
-								<td><a class="btn btn-danger"
-									href="/admin/delete/${user.id}">删除</a> <a
-									class="btn btn-primary" href="/admin/reset/${user.id}">重置密码</a></td>
-							</tr>
-						</c:forEach>
-
-					</tbody>
+				<table id="user_table">
 				</table>
-				<ul class="pagination">
-					<li><a href="#">首页</a></li>
-					<li><a href="#">上一页</a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">下一页</a></li>
-					<li><a href="#">尾页</a></li>
-				</ul>
-
+				<div id="toolbar" class="btn-group">
+					<button id="btn_add" type="button" href="#modal-container-900242"
+						data-toggle="modal" class="btn btn-danger">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+					</button>
+				</div>
 				<div class="modal fade" id="modal-container-900242" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -122,20 +92,13 @@
 									onclick="add_form()">增加</button>
 							</div>
 						</div>
-
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		function add_form() {
-			var a = $("#loginPassword").val();
-			var b = $("#loginUserName").val();
-			$("#loginPassword").val(hex_sha1(a + b));
-			$("#add_form").submit();
-		}
-	</script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/table_user.js"></script>
 </body>
 </html>

@@ -18,4 +18,8 @@ public interface IUserService {
 	public boolean deleteByPrimaryKey(int id);
 
 	public boolean resetPasswordByPrimaryKey(int id);
+
+	public int selectUserCnt();
+
+	public List<UserT> selectLimit(int limit, int offset);
 }

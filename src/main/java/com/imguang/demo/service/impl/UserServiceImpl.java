@@ -81,4 +81,19 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 
+	@Override
+	public int selectUserCnt() {
+		return userTMapper.selectUserCnt();
+	}
+
+	@Override
+	public List<UserT> selectLimit(int limit, int offset) {
+		Map<String, Object> maps = new HashMap<String, Object>();
+		List<UserT> lists = new ArrayList<UserT>();
+		maps.put("limit", limit);
+		maps.put("offset", offset);
+		lists.addAll(userTMapper.selectLimit(maps));
+		return lists;
+	}
+
 }

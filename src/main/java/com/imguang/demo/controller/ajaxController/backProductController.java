@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.imguang.demo.model.Product;
+import com.imguang.demo.model.UserT;
+import com.imguang.demo.service.IUserService;
 import com.imguang.demo.service.impl.ProductServiceImpl;
 
 @Controller
@@ -26,6 +28,9 @@ public class backProductController {
 
 	@Resource
 	ProductServiceImpl productServiceImpl;
+
+	@Resource
+	IUserService userServiceImpl;
 
 	@RequestMapping(value = "/deleteOneProduct/{id}", method = RequestMethod.GET)
 	@ResponseBody
@@ -50,11 +55,27 @@ public class backProductController {
 	}
 
 	/*
+	 * 分页请求用户信息
+	 */
+
+	@RequestMapping(value = "/selectLimitUser", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> selectLimitUser(int limit, int offset) {
+		Map<String, Object> temMap = new HashMap<String, Object>();
+		int cnt = userServiceImpl.selectUserCnt();
+		List<UserT> userTs = new ArrayList<UserT>();
+		userTs.addAll(userServiceImpl.selectLimit(limit, offset));
+		temMap.put("total", cnt);
+		temMap.put("rows", userTs);
+		return temMap;
+	}
+
+	/*
 	 * 分页请求商品信息
 	 */
 	@RequestMapping(value = "/selectLimitProduct", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> temTest(int limit, int offset) {
+	public Map<String, Object> selectLimitProduct(int limit, int offset) {
 		Map<String, Object> temMap = new HashMap<String, Object>();
 		int cnt = productServiceImpl.selectProductCnt();
 		List<Product> products = new ArrayList<Product>();

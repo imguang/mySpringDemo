@@ -29,6 +29,19 @@
 		from user_t
 		where user_name = #{userName,jdbcType=VARCHAR}
 	</select>
+
+	<select id="selectUserCnt" resultType="java.lang.Integer">
+		select count(id) from
+		user_t
+	</select>
+	<select id="selectLimit" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" /> 
+		from user_t order by id limit
+		#{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+	</select>
+
 	<select id="seletcByUserNamePassword" resultMap="BaseResultMap"
 		parameterType="java.util.Map">
 		select

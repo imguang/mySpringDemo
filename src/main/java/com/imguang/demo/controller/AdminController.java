@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +30,8 @@ public class AdminController {
 	@Resource
 	ProductServiceImpl ProductServiceImpl;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String showUserInfo(Model model) {
-		model.addAttribute("users", userServiceImpl.selectAllUserTs());
+	@RequestMapping
+	public String showUserInfo() {
 		return "back/userInfo";
 	}
 
@@ -89,14 +87,12 @@ public class AdminController {
 	}
 
 	/*
-	 * 商品首页
-	 * abandoned
-	 
-	@RequestMapping(value = "/productInfo")
-	public String showProductInfo(Model model) {
-		model.addAttribute("products", ProductServiceImpl.selectAllProducts());
-		return "back/temProductInfo";
-	}*/
+	 * 商品首页 abandoned
+	 * 
+	 * @RequestMapping(value = "/productInfo") public String
+	 * showProductInfo(Model model) { model.addAttribute("products",
+	 * ProductServiceImpl.selectAllProducts()); return "back/temProductInfo"; }
+	 */
 
 	/*
 	 * 商品首页测试
