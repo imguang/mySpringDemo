@@ -44,8 +44,6 @@
 					<li class="active"><a href="#">用户管理</a></li>
 					<li><a href="/admin/productInfo">商品管理</a></li>
 					<li><a href="#">load...</a></li>
-					<li class="pull-right"><a href="#modal-container-900242"
-						data-toggle="modal">新增</a></li>
 				</ul>
 
 				<table id="user_table">

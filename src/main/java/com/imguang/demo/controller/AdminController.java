@@ -98,7 +98,7 @@ public class AdminController {
 	 * 商品首页测试
 	 */
 	@RequestMapping(value = "/productInfo")
-	public String test() {
+	public String productInfo() {
 		return "back/productInfo";
 	}
 }

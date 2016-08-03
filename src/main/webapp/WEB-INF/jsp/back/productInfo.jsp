@@ -51,7 +51,8 @@
 	</div>
 	<!-- 提示模态框 -->
 	<div class="modal fade" id="myModal" role="dialog"
-		aria-labelledby="tipModalLabel" aria-hidden="true" style="display: none;">
+		aria-labelledby="tipModalLabel" aria-hidden="true"
+		style="display: none;">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body" id="show_content">这里是弹窗的内容</div>
@@ -61,7 +62,8 @@
 	<!-- 增加模态框 -->
 
 	<div class="modal fade" id="modal-container-900242" role="dialog"
-		aria-labelledby="addModalLabel" aria-hidden="true" style="display: none;">
+		aria-labelledby="addModalLabel" aria-hidden="true"
+		style="display: none;">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -108,7 +110,8 @@
 	<!-- 修改模态框 -->
 
 	<div class="modal fade" id="modal-container-edit" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
