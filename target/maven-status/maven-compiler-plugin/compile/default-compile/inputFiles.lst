@@ -1,6 +1,7 @@
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\util\Iconst\IconstAddProduct.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\model\UserT.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\model\Product.java
+F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IMainPageService.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\AdminController.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\ajaxController\back\backProductController.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\ajaxController\front\indexInfo.java
@@ -11,6 +12,7 @@ F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\entity\TemUser.ja
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\impl\ProductServiceImpl.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\util\DateFormatUtil.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\MainPageController.java
+F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\impl\MainPageServiceImpl.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\util\Iconst\IconstLogin.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IConfirmCode.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\dao\UserTMapper.java

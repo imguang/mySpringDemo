@@ -3,8 +3,9 @@ package com.imguang.demo.entity;
 public class PageInfo {
 
 	public int nowPage;
-	public int onePageNum = 5;
+	public int onePageNum;
 	public int totNum;
+	public int totPage;
 
 	public int getNowPage() {
 		return nowPage;
@@ -28,6 +29,14 @@ public class PageInfo {
 
 	public void setTotNum(int totNum) {
 		this.totNum = totNum;
+	}
+
+	public int getTotPage() {
+		return totPage;
+	}
+
+	public void setTotPage(int totPage) {
+		this.totPage = totPage;
 	}
 
 	@Override

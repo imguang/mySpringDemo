@@ -59,15 +59,41 @@
 				</div>
 				<div class="text-center">
 					<ul class="pagination">
-						<li><a href="# "> <<</a></li>
-						<li><a href="# "> <</a></li>
-						<li><a href="# ">1</a></li>
-						<li><a href="# ">2</a></li>
-						<li><a href="# ">3</a></li>
-						<li><a href="# ">4</a></li>
-						<li><a href="# ">5</a></li>
-						<li><a href="# ">></a></li>
-						<li><a href="# ">>></a></li>
+						<c:if test="${pageInfo.nowPage != '1'}">
+							<li><a
+								href="/main/index?nowPage=1&onePageNum=${pageInfo.onePageNum}">
+									<<</a></li>
+						</c:if>
+						<c:if test="${pageInfo.nowPage - 1 > 0}">
+							<li><a
+								href="/main/index?nowPage=${pageInfo.nowPage - 1}&onePageNum=${pageInfo.onePageNum}">
+									<</a></li>
+						</c:if>
+						<c:if test="${pageInfo.nowPage - 2 > 0}">
+							<li><a
+								href="/main/index?nowPage=${pageInfo.nowPage - 2}&onePageNum=${pageInfo.onePageNum}">${pageInfo.nowPage - 2}</a></li>
+						</c:if>
+						<c:if test="${pageInfo.nowPage - 1 > 0}">
+							<li><a
+								href="/main/index?nowPage=${pageInfo.nowPage - 1}&onePageNum=${pageInfo.onePageNum}">${pageInfo.nowPage - 1}</a></li>
+						</c:if>
+						<li class="active"><a href="#">${pageInfo.nowPage}</a></li>
+						<c:if test="${pageInfo.nowPage + 1 <= pageInfo.totPage}">
+							<li><a
+								href="/main/index?nowPage=${pageInfo.nowPage + 1}&onePageNum=${pageInfo.onePageNum}">${pageInfo.nowPage + 1}</a></li>
+						</c:if>
+						<c:if test="${pageInfo.nowPage + 2 <= pageInfo.totPage}">
+							<li><a
+								href="/main/index?nowPage=${pageInfo.nowPage + 2}&onePageNum=${pageInfo.onePageNum}">${pageInfo.nowPage + 2}</a></li>
+						</c:if>
+						<c:if test="${pageInfo.nowPage + 1 <= pageInfo.totPage}">
+							<li><a
+								href="/main/index?nowPage=${pageInfo.nowPage + 1}&onePageNum=${pageInfo.onePageNum}">></a></li>
+						</c:if>
+						<c:if test="${pageInfo.nowPage != pageInfo.totPage}">
+							<li><a
+								href="/main/index?nowPage=${pageInfo.totPage}&onePageNum=${pageInfo.onePageNum}">>></a></li>
+						</c:if>
 					</ul>
 				</div>
 			</div>
