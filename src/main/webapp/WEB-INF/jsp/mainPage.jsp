@@ -27,7 +27,7 @@
 										<a href="/count/RegisterAndLoginView ">游客,请登录！</a>
 									</c:when>
 									<c:otherwise>
-										<a href="/count/userInfo/${userName}">${userName}</a>
+										<a href="/userInfo/userIndex/${userName}">${userName}</a>
 									</c:otherwise>
 								</c:choose>
 							</h2>
@@ -40,7 +40,7 @@
 					<li><a href="# ">购物车</a></li>
 					<li class="disabled "><a href="# ">more...</a></li>
 				</ul>
-				<div class="row ">
+				<div class="row " style="padding-top: 50px;">
 					<c:forEach items="${products}" var="product" varStatus="status">
 						<div class="col-md-4 ">
 							<div class="thumbnail ">
@@ -49,8 +49,8 @@
 									<h3>${product.gName}</h3>
 									<p>${product.gDescription }</p>
 									<p>
-										<a class="btn btn-primary " href="# ">浏览</a> <a
-											class="btn btn-danger" href="# ">加入购物车</a>
+										<a class="btn btn-primary " href="/product/${product.id}">浏览</a>
+										<a class="btn btn-danger" href="# ">加入购物车</a>
 									</p>
 								</div>
 							</div>

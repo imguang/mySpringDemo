@@ -9,9 +9,9 @@ public interface IUserService {
 
 	public boolean insert(UserT userT);
 
-	public boolean selectUserByName(String userName);
+	public boolean comfirmUserByName(String userName);
 
-	public boolean selectUserByNameAndPassword(String user_name, String password);
+	public boolean comfirmUserByNameAndPassword(String user_name, String password);
 
 	public List<UserT> selectAllUserTs();
 
@@ -22,4 +22,6 @@ public interface IUserService {
 	public int selectUserCnt();
 
 	public List<UserT> selectLimit(int limit, int offset);
+
+	public UserT selectUserByUserName(String userName);
 }

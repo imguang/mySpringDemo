@@ -39,12 +39,12 @@ public class RegisterAndLoginController {
 			HttpServletRequest request) {
 		System.out.println(userName + password);
 		Map<String, String> map = new HashMap<String, String>();
-		boolean re = UserServiceImpl.selectUserByName(userName);
+		boolean re = UserServiceImpl.comfirmUserByName(userName);
 		if (!re) {// 没找到该用户名
 			map.put("state", IconstLogin.STATE_NOFOUNDNAME);
 		} else {
 			re = UserServiceImpl
-					.selectUserByNameAndPassword(userName, password);
+					.comfirmUserByNameAndPassword(userName, password);
 			if (!re) {// 密码错误
 				map.put("state", IconstLogin.STATE_PASSWORDREJECT);
 			} else {

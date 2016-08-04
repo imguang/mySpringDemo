@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean selectUserByName(String userName) {
+	public boolean comfirmUserByName(String userName) {
 		UserT userT = userTMapper.seletcByUserName(userName);
 		if (userT != null && userT.getUserName().equals(userName)) {
 			return true;
@@ -44,7 +44,7 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean selectUserByNameAndPassword(String user_name, String password) {
+	public boolean comfirmUserByNameAndPassword(String user_name, String password) {
 		Map<String, String> temMap = new HashMap<String, String>();
 		temMap.put("userName", user_name);
 		temMap.put("password", password);
@@ -94,6 +94,11 @@ public class UserServiceImpl implements IUserService {
 		maps.put("offset", offset);
 		lists.addAll(userTMapper.selectLimit(maps));
 		return lists;
+	}
+
+	@Override
+	public UserT selectUserByUserName(String userName) {
+		return userTMapper.seletcByUserName(userName);
 	}
 
 }

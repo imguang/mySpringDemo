@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.imguang.demo.entity.PageInfo;
@@ -45,5 +46,10 @@ public class MainPageController {
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("products", products);
 		return "mainPage";
+	}
+
+	@RequestMapping("/product/{id}")
+	public String showProductDetail(@PathVariable("id") int id) {
+		return null;
 	}
 }

@@ -135,4 +135,9 @@ public class ProductServiceImpl implements IProductService {
 		lists.addAll(productMapper.selectLimit(maps));
 		return lists;
 	}
+
+	@Override
+	public Product selectByPrimaryKey(Integer id) {
+		return productMapper.selectByPrimaryKey(id);
+	}
 }

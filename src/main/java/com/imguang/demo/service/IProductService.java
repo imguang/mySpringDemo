@@ -26,4 +26,6 @@ public interface IProductService {
 	public int selectProductCnt();
 
 	public List<Product> selectLimit(int limit, int offset);
+
+	public Product selectByPrimaryKey(Integer id);
 }
