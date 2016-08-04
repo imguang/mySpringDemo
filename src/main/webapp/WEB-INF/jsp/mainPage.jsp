@@ -47,10 +47,11 @@
 								<img alt="300x200 " src="${product.gImgurl }" />
 								<div class="caption ">
 									<h3>${product.gName}</h3>
+									<p>¥${product.gPrice}</p>
 									<p>${product.gDescription }</p>
 									<p>
 										<a class="btn btn-primary " href="/product/${product.id}">浏览</a>
-										<a class="btn btn-danger" href="# ">加入购物车</a>
+										<a class="btn btn-danger" href="# ">收藏</a>
 									</p>
 								</div>
 							</div>

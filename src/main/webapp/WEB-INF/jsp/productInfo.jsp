@@ -7,10 +7,7 @@
 <title>商品详情</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" />
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/jquery-3.0.0.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<div class="container">
@@ -35,15 +32,34 @@
 						<div>
 							<label>库存数量：${product.gNum}</label>
 						</div>
-						<label>选择购买数量:<input type="number" style="width: 40px"></input></label>
+						<form id="addCartForm">
+							<input type="hidden" name="productId" id="productId"
+								value="${product.id}" /> <label>选择购买数量:</label><input
+								type="number" name="number" style="width: 40px" min="1"
+								max="${product.gNum}" value="1" />
+						</form>
 						<div>
-							<a class="btn btn-primary">立即购买</a> <a class="btn btn-danger">加入购物车</a>
+							<a class="btn btn-primary">立即购买</a> <a class="btn btn-danger"
+								href="" onclick="addCart()">加入购物车</a>
 						</div>
 					</div>
 				</div>
-
+			</div>
+		</div>
+		<div class="modal fade" id="myModal" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" id="show_content">这里是弹窗的内容</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/productInfo_addcart.js"></script>
 </body>
 </html>
