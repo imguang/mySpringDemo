@@ -10,9 +10,9 @@ F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IConfirmC
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\dao\UserTMapper.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\ajaxController\front\CartMethod.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IProductService.java
+F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\CartPage.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\impl\UserServiceImpl.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IUserService.java
-F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\entity\CartEntity.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\model\UserT.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\model\Product.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IMainPageService.java
@@ -23,4 +23,5 @@ F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\impl\Prod
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\util\DateFormatUtil.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\util\Iconst\IconstLogin.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\UerInfoControl.java
+F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\entity\CartItem.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\RegisterAndLoginController.java

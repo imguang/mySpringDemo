@@ -34,7 +34,7 @@
 							id="bs-example-navbar-collapse-6">
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="/main/index">商品</a></li>
-								<li><a href="# ">购物车<span class="badge" id="badge">${fn:length(cart)}</span></a></li>
+								<li><a href="/cart">购物车<span class="badge" id="badge">${fn:length(cart)}</span></a></li>
 								<li class="disabled "><a href="# ">more...</a></li>
 							</ul>
 							<p class="navbar-text navbar-right" style="padding-right: 30px">
@@ -79,7 +79,7 @@
 						</form>
 						<div>
 							<a class="btn btn-primary">立即购买</a> <a class="btn btn-danger"
-								href="" onclick="addCart()">加入购物车</a>
+								onclick="addCart()">加入购物车</a>
 						</div>
 					</div>
 				</div>

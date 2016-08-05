@@ -42,9 +42,6 @@ var TableInit = function() {
 							detailView : false, // 是否显示父子表
 							columns : [
 									{
-										checkbox : false
-									},
-									{
 										field : 'gImgurl',
 										title : '图片',
 										align : 'center'

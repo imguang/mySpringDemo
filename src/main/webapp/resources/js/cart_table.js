@@ -1,25 +1,21 @@
-function add_form() {
-	var a = $("#loginPassword").val();
-	var b = $("#loginUserName").val();
-	$("#loginPassword").val(hex_sha1(a + b));
-	$("#add_form").submit();
-}
 $(function() {
 
 	// 1.初始化Table
 	var oTable = new TableInit();
 	oTable.Init();
+
 	// 2.初始化Button的点击事件
 	// var oButtonInit = new ButtonInit();
 	// oButtonInit.Init();
+
 });
 
 var TableInit = function() {
 	var oTableInit = new Object();
 	// 初始化Table
 	oTableInit.Init = function() {
-		$('#user_table').bootstrapTable({
-			url : '/backProductAjax/selectLimitUser', // 请求后台的URL（*）
+		$('#tb_departments').bootstrapTable({
+			url : '/cartAjax/cartInfo', // 请求后台的URL（*）
 			method : 'get', // 请求方式（*）
 			toolbar : '#toolbar', // 工具按钮用哪个容器
 			striped : true, // 是否显示行间隔色
@@ -30,8 +26,8 @@ var TableInit = function() {
 			queryParams : oTableInit.queryParams, // 传递参数（*）
 			sidePagination : "server", // 分页方式：client客户端分页，server服务端分页（*）
 			pageNumber : 1, // 初始化加载第一页，默认第一页
-			pageSize : 5, // 每页的记录行数（*）
-			pageList : [ 5, 10, 25, 50, 100 ], // 可供选择的每页的行数（*）
+			pageSize : 25, // 每页的记录行数（*）
+			pageList : [ 25, 50 ], // 可供选择的每页的行数（*）
 			search : false, // 是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
 			strictSearch : false,
 			showColumns : false, // 是否显示所有的列
@@ -43,26 +39,31 @@ var TableInit = function() {
 			cardView : false, // 是否显示详细视图
 			detailView : false, // 是否显示父子表
 			columns : [ {
-				field : 'userName',
+				checkbox : true
+			}, {
+				field : 'gImgurl',
+				title : '图片',
+				align : 'center'
+			}, {
+				field : 'gName',
 				title : '名称',
 				align : 'center'
 			}, {
-				field : 'password',
-				title : '密码',
+				field : 'gPrice',
+				title : '价格',
 				align : 'center'
 			}, {
-				field : 'email',
-				title : 'email',
+				field : 'gNum',
+				title : '库存',
+				align : 'center'
+			}, {
+				field : 'needNum',
+				title : '需要数量',
 				align : 'center'
 			}, {
 				title : '操作',
 				field : 'id',
-				align : 'center',
-				formatter : function(value, row, index) {
-					var e = "<a href='/admin/delete/" + row.id + "'>删除</a> ";
-					var d = "<a href='/admin/reset/" + row.id + "'>重置</a> ";
-					return e + d;
-				}
+				align : 'center'
 			}, ]
 		});
 	};

@@ -1,15 +1,22 @@
 package com.imguang.demo.controller.ajaxController.front;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.imguang.demo.entity.CartItem;
+import com.imguang.demo.service.IProductService;
 
 /**
  * 购物车的异步操作
@@ -17,6 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/cartAjax")
 public class CartMethod {
+
+	@Resource
+	IProductService productServiceImpl;
 
 	@RequestMapping("/addToCart")
 	@ResponseBody
@@ -45,6 +55,37 @@ public class CartMethod {
 		session.setAttribute("cart", cart);
 		map.put("state", "1");
 		map.put("cartNum", String.valueOf(cart.size()));
+		return map;
+	}
+
+	@RequestMapping(value = "/cartInfo", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> cartInfo(int limit, int offset,
+			HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(false);
+		Map<String, Object> map = new HashMap<String, Object>();
+		if (session == null || session.getAttribute("userName") == null) {
+			map.put("total", 0);
+			return map;
+		}
+		@SuppressWarnings("unchecked")
+		Map<Integer, Integer> cart = (Map<Integer, Integer>) session
+				.getAttribute("cart");
+		if (cart == null || cart.size() == 0) {
+			map.put("total", 0);
+			return map;
+		} else {
+			List<CartItem> cartItems = new ArrayList<CartItem>();
+			for (Map.Entry<Integer, Integer> mapEntry : cart.entrySet()) {
+				CartItem cartItem = new CartItem();
+				cartItem.setProduct(productServiceImpl
+						.selectByPrimaryKey(mapEntry.getKey()));
+				cartItem.setNeedNum(mapEntry.getValue());
+				cartItems.add(cartItem);
+			}
+			map.put("rows", cartItems);
+			map.put("total", cart.size());
+		}
 		return map;
 	}
 }

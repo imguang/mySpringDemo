@@ -38,7 +38,7 @@ body {
 							id="bs-example-navbar-collapse-6">
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="/main/index">商品</a></li>
-								<li><a href="# ">购物车<span class="badge">${fn:length(cart)}</span></a></li>
+								<li><a href="/cart">购物车<span class="badge">${fn:length(cart)}</span></a></li>
 								<li class="disabled "><a href="# ">more...</a></li>
 							</ul>
 							<p class="navbar-text navbar-right" style="padding-right: 30px">
