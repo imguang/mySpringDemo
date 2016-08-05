@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.imguang.demo.entity.CartEntity;
-
 /**
  * 购物车的异步操作
  */
@@ -45,8 +43,8 @@ public class CartMethod {
 							+ number);
 		}
 		session.setAttribute("cart", cart);
-		System.out.println(cart);
 		map.put("state", "1");
+		map.put("cartNum", String.valueOf(cart.size()));
 		return map;
 	}
 }
