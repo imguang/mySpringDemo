@@ -19,8 +19,18 @@
 	height: 38px;
 }
 
+p {
+	display: inline
+}
+
 body {
 	padding-top: 70px;
+}
+
+em {
+	color: #f40;
+	font-weight: 700;
+	font-size: 18px;
 }
 </style>
 </head>
@@ -59,7 +69,6 @@ body {
 										<a class="navbar-link" href="/userInfo/userIndex/${userName}">${userName}</a>
 									</c:when>
 									<c:otherwise>
-
 										<a class="navbar-link" href="/count/RegisterAndLoginView ">游客,请登录</a>
 									</c:otherwise>
 								</c:choose>
@@ -68,18 +77,59 @@ body {
 					</div>
 					</nav>
 				</div>
+				<!-- 显示内容 -->
+				<c:choose>
+					<c:when test="${total == 0}">
+						<p>
+							购物车空空如也，快去<a href="/main/index">选购</a>吧~
+						</p>
+					</c:when>
+					<c:otherwise>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th><input type="checkbox" id="checkAll" /></th>
+									<th>图片</th>
+									<th>名称</th>
+									<th>价格</th>
+									<th>库存</th>
+									<th>需要数量</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
 
-				<table id="tb_departments" style=""></table>
-				<div id="toolbar" class="btn-group">
-					<button id="btn_balance" type="button" data-toggle="modal"
-						class="btn btn-danger">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>结算
-					</button>
-					<button id="btn_delete" type="button" data-toggle="modal"
-						class="btn btn-danger">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>结算
-					</button>
-				</div>
+								<c:forEach items="${rows}" var="item" varStatus="status">
+									<tr id="tr_${item.id}" class="tr">
+										<td><input type="checkbox" id="checkbox_${item.id}"
+											class="checkbox" /></td>
+										<td>${item.gImgurl}</td>
+										<td>${item.gName }</td>
+										<td class="price">${item.gPrice }</td>
+										<td>${item.gNum }</td>
+										<td class="needTd"><div data-trigger="spinner"
+												class="spinner">
+												<a href="javascript:;" data-spin="down"><span
+													class="glyphicon glyphicon-minus"></span> </a> <input
+													type="text" value="${item.needNum }" data-rule="quantity"
+													data-max="${item.gNum }" style="width: 60px;"
+													class="needNum"> <a href="javascript:;"
+													data-spin="up"><span class="glyphicon glyphicon-plus"></span></a>
+											</div></td>
+										<td><button class='btn btn-primary'>删除</button></td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+						<div class="pull-right">
+							<p>已选商品</p>
+							<em id="tot_num">0</em> 件合计（不含运费）： ￥ <em id="tot_money">0</em>
+							<button style="display: inline" class="btn btn-danger">结算</button>
+						</div>
+					</c:otherwise>
+				</c:choose>
+
 			</div>
 		</div>
 	</div>
@@ -100,11 +150,7 @@ body {
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/bootstrap-table.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/bootstrap-table-zh-CN.js"></script>
-	<script type="text/javascript"
-		src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/js/jquery.spinner.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/js/cart_table.js"></script>
 </body>

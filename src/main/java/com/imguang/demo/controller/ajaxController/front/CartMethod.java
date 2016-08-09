@@ -58,6 +58,7 @@ public class CartMethod {
 		return map;
 	}
 
+	// abandon
 	@RequestMapping(value = "/cartInfo", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> cartInfo(int limit, int offset,
