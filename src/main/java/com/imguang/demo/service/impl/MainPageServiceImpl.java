@@ -17,7 +17,6 @@ public class MainPageServiceImpl implements IMainPageService {
 	/*
 	 * 对分页信息进行处理
 	 */
-	@Override
 	public PageInfo dealPageInfo(PageInfo pageInfo) {
 		if (pageInfo.getTotNum() <= 0) {// 总条数
 			pageInfo.setTotNum(productServiceImpl.selectProductCnt());
@@ -26,8 +25,7 @@ public class MainPageServiceImpl implements IMainPageService {
 			pageInfo.setOnePageNum(9);
 		}
 		int temPageNum = pageInfo.getTotNum() / pageInfo.getOnePageNum();
-		pageInfo.setTotPage(pageInfo.getTotNum() % pageInfo.getOnePageNum() == 0 ? temPageNum
-				: temPageNum + 1);// 总页数
+		pageInfo.setTotPage(pageInfo.getTotNum() % pageInfo.getOnePageNum() == 0 ? temPageNum : temPageNum + 1);// 总页数
 		if (pageInfo.getNowPage() <= 0) {// 当前页数
 			pageInfo.setNowPage(1);
 		} else if (pageInfo.getNowPage() > pageInfo.getTotNum()) {

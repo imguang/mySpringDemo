@@ -20,12 +20,10 @@ public class UserServiceImpl implements IUserService {
 	@Resource
 	private UserTMapper userTMapper;
 
-	@Override
 	public UserT getUserById(int userId) {
 		return (UserT) userTMapper.selectByPrimaryKey(userId);
 	}
 
-	@Override
 	public boolean insert(UserT userT) {
 		int re = userTMapper.insert(userT);
 		if (re != 0) {
@@ -34,7 +32,6 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 
-	@Override
 	public boolean comfirmUserByName(String userName) {
 		UserT userT = userTMapper.seletcByUserName(userName);
 		if (userT != null && userT.getUserName().equals(userName)) {
@@ -43,27 +40,23 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 
-	@Override
 	public boolean comfirmUserByNameAndPassword(String user_name, String password) {
 		Map<String, String> temMap = new HashMap<String, String>();
 		temMap.put("userName", user_name);
 		temMap.put("password", password);
 		UserT userT = userTMapper.seletcByUserNamePassword(temMap);
-		if (userT != null && userT.getPassword().equals(password)
-				&& userT.getUserName().equals(user_name)) {
+		if (userT != null && userT.getPassword().equals(password) && userT.getUserName().equals(user_name)) {
 			return true;
 		}
 		return false;
 	}
 
-	@Override
 	public List<UserT> selectAllUserTs() {
 		List<UserT> userTs = new ArrayList<UserT>();
 		userTs.addAll(userTMapper.selectAllUserTs());
 		return userTs;
 	}
 
-	@Override
 	public boolean deleteByPrimaryKey(int id) {
 		if (userTMapper.deleteByPrimaryKey(id) != 0) {
 			return true;
@@ -71,7 +64,6 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 
-	@Override
 	public boolean resetPasswordByPrimaryKey(int id) {
 		UserT userT = userTMapper.selectByPrimaryKey(id);
 		userT.setPassword(DigestUtils.sha1Hex("88888" + userT.getUserName()));
@@ -81,12 +73,10 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 
-	@Override
 	public int selectUserCnt() {
 		return userTMapper.selectUserCnt();
 	}
 
-	@Override
 	public List<UserT> selectLimit(int limit, int offset) {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		List<UserT> lists = new ArrayList<UserT>();
@@ -96,7 +86,6 @@ public class UserServiceImpl implements IUserService {
 		return lists;
 	}
 
-	@Override
 	public UserT selectUserByUserName(String userName) {
 		return userTMapper.seletcByUserName(userName);
 	}

@@ -27,7 +27,6 @@ public class ProductServiceImpl implements IProductService {
 	@Resource
 	ProductMapper productMapper;
 
-	@Override
 	public String insertProduct(Product product) {
 		int re = productMapper.insert(product);
 		if (re != 0) {
@@ -36,21 +35,16 @@ public class ProductServiceImpl implements IProductService {
 		return "2";
 	}
 
-	@Override
 	public List<Product> selectAllProducts() {
 		return productMapper.selectAllProducts();
 	}
 
-	@Override
-	public String deleteOneProducts(int id, HttpServletRequest request,
-			HttpServletResponse response) {
+	public String deleteOneProducts(int id, HttpServletRequest request, HttpServletResponse response) {
 		Product temProduct = productMapper.selectByPrimaryKey(id);
 		if (temProduct == null) {
 			return "3";
 		}
-		String realPath = request.getSession().getServletContext()
-				.getRealPath("/")
-				+ temProduct.getgImgurl();
+		String realPath = request.getSession().getServletContext().getRealPath("/") + temProduct.getgImgurl();
 		// 首先删除图片
 		File file2 = new File(realPath);
 		file2.delete();
@@ -61,9 +55,8 @@ public class ProductServiceImpl implements IProductService {
 		return "2";
 	}
 
-	@Override
-	public String updateProduct(MultipartFile file, Product product,
-			HttpServletRequest request, HttpServletResponse response) {
+	public String updateProduct(MultipartFile file, Product product, HttpServletRequest request,
+			HttpServletResponse response) {
 		Product temProduct = productMapper.selectByPrimaryKey(product.getId());
 		if (temProduct == null) {
 			return "3";
@@ -72,9 +65,7 @@ public class ProductServiceImpl implements IProductService {
 		if (originString == null || originString.equals("")) {
 			product.setgImgurl(temProduct.getgImgurl());
 		} else {// 如果要进行图片更改
-			String realPath = request.getSession().getServletContext()
-					.getRealPath("/")
-					+ temProduct.getgImgurl();
+			String realPath = request.getSession().getServletContext().getRealPath("/") + temProduct.getgImgurl();
 			// 首先删除图片
 			File file2 = new File(realPath);
 			file2.delete();
@@ -88,11 +79,8 @@ public class ProductServiceImpl implements IProductService {
 		return "2";
 	}
 
-	@Override
-	public String transferFile(MultipartFile file, HttpServletRequest request,
-			HttpServletResponse response) {
-		String realPath = request.getSession().getServletContext()
-				.getRealPath("/");
+	public String transferFile(MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
+		String realPath = request.getSession().getServletContext().getRealPath("/");
 		String originString = file.getOriginalFilename();
 		// 文件后缀
 		String suffix = originString.substring(originString.lastIndexOf("."));
@@ -121,12 +109,10 @@ public class ProductServiceImpl implements IProductService {
 		return "/resources/img/" + datePath + logImageName;
 	}
 
-	@Override
 	public int selectProductCnt() {
 		return productMapper.selectProductCnt();
 	}
 
-	@Override
 	public List<Product> selectLimit(int limit, int offset) {
 		Map<String, Object> maps = new HashMap<String, Object>();
 		List<Product> lists = new ArrayList<Product>();
@@ -136,7 +122,6 @@ public class ProductServiceImpl implements IProductService {
 		return lists;
 	}
 
-	@Override
 	public Product selectByPrimaryKey(Integer id) {
 		return productMapper.selectByPrimaryKey(id);
 	}

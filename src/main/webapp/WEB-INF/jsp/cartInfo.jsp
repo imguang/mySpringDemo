@@ -116,7 +116,8 @@ em {
 													class="needNum"> <a href="javascript:;"
 													data-spin="up"><span class="glyphicon glyphicon-plus"></span></a>
 											</div></td>
-										<td><button class='btn btn-primary'>删除</button></td>
+										<td><button class='btn btn-primary delete_btn'
+												value="${item.id}">删除</button></td>
 									</tr>
 								</c:forEach>
 
@@ -151,6 +152,8 @@ em {
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/js/jquery.spinner.js"></script>
+		<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/jquery.json-2.4.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/js/cart_table.js"></script>
 </body>

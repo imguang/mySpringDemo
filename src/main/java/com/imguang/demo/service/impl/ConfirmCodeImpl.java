@@ -34,7 +34,6 @@ public class ConfirmCodeImpl implements IConfirmCode {
 	static {
 		// cs.setColorFactory(new SingleColorFactory(new Color(25, 60, 170)));
 		cs.setColorFactory(new ColorFactory() {
-			@Override
 			public Color getColor(int x) {
 				int[] c = new int[3];
 				int i = random.nextInt(c.length);
@@ -66,12 +65,10 @@ public class ConfirmCodeImpl implements IConfirmCode {
 	 * 生成验证码
 	 */
 	@Override
-	public void generate(HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	public void generate(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		switch (random.nextInt(5)) {
 		case 0:
-			cs.setFilterFactory(new CurvesRippleFilterFactory(cs
-					.getColorFactory()));
+			cs.setFilterFactory(new CurvesRippleFilterFactory(cs.getColorFactory()));
 			break;
 		case 1:
 			cs.setFilterFactory(new MarbleRippleFilterFactory());
@@ -91,8 +88,7 @@ public class ConfirmCodeImpl implements IConfirmCode {
 			session = request.getSession();
 		}
 		setResponseHeaders(response);
-		String token = EncoderHelper.getChallangeAndWriteImage(cs, "png",
-				response.getOutputStream());
+		String token = EncoderHelper.getChallangeAndWriteImage(cs, "png", response.getOutputStream());
 		token = token.toLowerCase();
 		session.setAttribute("captchaToken", token);
 		System.out.println("当前sessionid=" + session.getId() + "，验证码=" + token);
@@ -101,12 +97,10 @@ public class ConfirmCodeImpl implements IConfirmCode {
 	/*
 	 * 验证码是否正确
 	 */
-	@Override
 	public boolean confirm(String code, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		code = code.toLowerCase();
-		if (session == null
-				|| !code.equals(session.getAttribute("captchaToken"))) {
+		if (session == null || !code.equals(session.getAttribute("captchaToken"))) {
 			return false;
 		}
 		return true;
