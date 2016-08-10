@@ -14,7 +14,6 @@
 			jdbcType="LONGVARCHAR" />
 	</resultMap>
 
-
 	<sql id="Base_Column_List">
 		id, g_name, g_price, g_num, g_imgurl
 	</sql>

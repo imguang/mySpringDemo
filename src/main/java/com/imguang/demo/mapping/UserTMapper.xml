@@ -10,6 +10,7 @@
 	<sql id="Base_Column_List">
 		id, user_name, password, email
 	</sql>
+
 	<select id="selectAllUserTs" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />

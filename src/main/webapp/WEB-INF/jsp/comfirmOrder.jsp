@@ -11,7 +11,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/bootstrap-table.css" />
+	href="<%=request.getContextPath()%>/resources/css/iF.step.css" />
 <style>
 .table th, .table td {
 	text-align: center;
@@ -59,8 +59,7 @@ em {
 							id="bs-example-navbar-collapse-6">
 							<ul class="nav navbar-nav">
 								<li><a href="/main/index">商品</a></li>
-								<li class="active"><a href="/cart">购物车<span
-										class="badge">${fn:length(cart)}</span></a></li>
+								<li><a href="/cart">购物车<span class="badge">${fn:length(cart)}</span></a></li>
 								<li><a href="#">订单中心</a></li>
 								<li class="disabled "><a href="# ">more...</a></li>
 							</ul>
@@ -78,62 +77,66 @@ em {
 					</div>
 					</nav>
 				</div>
+				<div>
+					<ol class="ui-step ui-step-yellow ui-step-3">
+						<li class="step-start step-done">
+							<div class="ui-step-line"></div>
+							<div class="ui-step-cont">
+								<span class="ui-step-cont-number">1</span> <span
+									class="ui-step-cont-text">查看购物车</span>
+							</div>
+						</li>
+						<li class="step-active">
+							<div class="ui-step-line"></div>
+							<div class="ui-step-cont">
+								<span class="ui-step-cont-number">2</span> <span
+									class="ui-step-cont-text">确认订单</span>
+							</div>
+						</li>
+						<li class="step-end">
+							<div class="ui-step-line"></div>
+							<div class="ui-step-cont">
+								<span class="ui-step-cont-number">3</span> <span
+									class="ui-step-cont-text">完成订单</span>
+							</div>
+						</li>
+					</ol>
+				</div>
+				<br />
 				<!-- 显示内容 -->
-				<c:choose>
-					<c:when test="${total == 0}">
-						<p>
-							购物车空空如也，快去<a href="/main/index">选购</a>吧~
-						</p>
-					</c:when>
-					<c:otherwise>
-						<table class="table table-striped">
-							<thead>
+				<strong>选择收货地址</strong> <br /> <br /> <br /> <strong>确认订单信息</strong><br />
+				<table class="table table-striped">
+					<form>
+						<thead>
+							<tr>
+								<th>图片</th>
+								<th>名称</th>
+								<th>单价</th>
+								<th>数量</th>
+								<th>小计</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${cartItems}" var="item" varStatus="status">
 								<tr>
-									<th><input type="checkbox" id="checkAll" /></th>
-									<th>图片</th>
-									<th>名称</th>
-									<th>价格</th>
-									<th>库存</th>
-									<th>需要数量</th>
-									<th>操作</th>
+									<th>${item.gImgurl}</th>
+									<th>${item.gName}</th>
+									<th>${item.gPrice}</th>
+									<th>${item.needNum}</th>
+									<th>${item.needNum * item.gPrice}</th>
 								</tr>
-							</thead>
-							<tbody>
-								<form id="cart_table" action="/order" method="post">
-									<c:forEach items="${rows}" var="item" varStatus="status">
-										<tr id="tr_${item.id}" class="tr">
-											<td><input type="checkbox" id="checkbox_${item.id}"
-												value="${item.id}" class="checkbox" /></td>
-											<td>${item.gImgurl}</td>
-											<td>${item.gName }</td>
-											<td class="price">${item.gPrice }</td>
-											<td>${item.gNum }</td>
-											<td class="needTd"><div data-trigger="spinner"
-													class="spinner">
-													<a href="javascript:;" data-spin="down"><span
-														class="glyphicon glyphicon-minus"></span> </a> <input
-														name="needNum_${item.id}" type="text"
-														value="${item.needNum }" data-rule="quantity"
-														data-max="${item.gNum }" style="width: 60px;"
-														class="needNum"> <a href="javascript:;"
-														data-spin="up"><span class="glyphicon glyphicon-plus"></span></a>
-												</div></td>
-											<td><button class='btn btn-primary delete_btn'
-													value="${item.id}">删除</button></td>
-										</tr>
-									</c:forEach>
-								</form>
-							</tbody>
-						</table>
-						<div class="pull-right">
-							<p>已选商品</p>
-							<em id="tot_num">0</em> 件合计（不含运费）： ￥ <em id="tot_money">0</em>
-							<button style="display: inline" class="btn btn-danger"
-								id="summary">结算</button>
-						</div>
-					</c:otherwise>
-				</c:choose>
-
+							</c:forEach>
+						</tbody>
+					</form>
+				</table>
+				<div class="pull-right">
+					<p class="money">
+						<span class="hd">实付款：</span><span class="bd"><span
+							class="tc-rmb">￥</span><strong id="J_RealPay">${tot_money}</strong></span>
+					</p>
+					<br />
+					<button class="btn btn-danger pull-right">提交订单</button>
+				</div>
 			</div>
 		</div>
 	</div>

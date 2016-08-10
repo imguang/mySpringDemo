@@ -73,6 +73,7 @@ $(".delete_btn").click(function() {
 			case "1":
 				$("#show_content").text("删除成功");
 				$(this).parent().parent().remove();
+				$(".badge").text(parseInt($(".badge").text()) - 1);
 				break;
 			case "0":
 				$("#show_content").text("不存在");
@@ -86,4 +87,36 @@ $(".delete_btn").click(function() {
 			alert("failed!");
 		}
 	});
+});
+$("#summary").click(function() {
+	var id = new Array();
+	var needNum = new Array();
+	$(".checkbox").each(function() {
+		if (this.checked) {
+			id.push($(this).val());
+			needNum.push($(this).parent().parent().find(".needNum").val());
+		}
+	});
+	if (id.length == 0) {
+		$("#show_content").text("请选择商品！");
+		$("#myModal").modal('show');
+		setTimeout("$('#myModal').modal('hide')", 800);
+	} else {
+		console.log(JSON.stringify(id));
+		console.log(JSON.stringify(needNum));
+		var form = $('<form></form>');
+		form.attr('action', '/order');
+		form.attr('method', 'post');
+		form.attr('target', '_self');
+		var id_input = $('<input type="text" name="ids" />');
+		id_input.attr('value', id);
+		var needNum_input = $('<input type="text" name="needNums" />');
+		needNum_input.attr('value', needNum);
+		form.append(id_input);
+		form.append(needNum_input);
+		form.submit();
+	}
+
+	// $("#cart_table").submit();
+	return false;
 });
