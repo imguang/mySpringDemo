@@ -39,44 +39,6 @@ em {
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<!-- 导航栏 -->
-				<div class="bs-example bs-navbar-top-example">
-					<nav class="navbar navbar-default navbar-fixed-top"> <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
-					<div class="container container-fluid">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed"
-								data-toggle="collapse"
-								data-target="#bs-example-navbar-collapse-6"
-								aria-expanded="false">
-								<span class="sr-only">Toggle navigation</span> <span
-									class="icon-bar"></span> <span class="icon-bar"></span> <span
-									class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand" href="#">Brand</a>
-						</div>
-
-						<div class="collapse navbar-collapse"
-							id="bs-example-navbar-collapse-6">
-							<ul class="nav navbar-nav">
-								<li><a href="/main/index">商品</a></li>
-								<li><a href="/cart">购物车<span class="badge">${fn:length(cart)}</span></a></li>
-								<li><a href="#">订单中心</a></li>
-								<li class="disabled "><a href="# ">more...</a></li>
-							</ul>
-							<p class="navbar-text navbar-right" style="padding-right: 30px">
-								<c:choose>
-									<c:when test="${userName ne null}">
-										<a class="navbar-link" href="/userInfo/userIndex/${userName}">${userName}</a>
-									</c:when>
-									<c:otherwise>
-										<a class="navbar-link" href="/count/RegisterAndLoginView ">游客,请登录</a>
-									</c:otherwise>
-								</c:choose>
-							</p>
-						</div>
-					</div>
-					</nav>
-				</div>
 				<div>
 					<ol class="ui-step ui-step-yellow ui-step-3">
 						<li class="step-start step-done">
@@ -135,7 +97,9 @@ em {
 							class="tc-rmb">￥</span><strong id="J_RealPay">${tot_money}</strong></span>
 					</p>
 					<br />
-					<button class="btn btn-danger pull-right">提交订单</button>
+					<div>
+						<button class="btn btn-danger pull-right">提交订单</button>
+					</div>
 				</div>
 			</div>
 		</div>

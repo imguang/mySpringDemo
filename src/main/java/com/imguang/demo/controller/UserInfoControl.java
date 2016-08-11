@@ -16,14 +16,13 @@ import com.imguang.demo.service.IUserService;
 
 @Controller
 @RequestMapping("/userInfo")
-public class UerInfoControl {
+public class UserInfoControl {
 	@Resource
 	IUserService userServiceImpl;
 
 	@RequestMapping(value = "/userIndex/{userName}", method = RequestMethod.GET)
-	public String userIndex(@PathVariable("userName") String userName,
-			HttpServletRequest request, HttpServletResponse response,
-			Model model) {
+	public String userIndex(@PathVariable("userName") String userName, HttpServletRequest request,
+			HttpServletResponse response, Model model) {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("userName") == null
 				|| !session.getAttribute("userName").equals(userName)) {
@@ -32,5 +31,10 @@ public class UerInfoControl {
 		UserT userT = userServiceImpl.selectUserByUserName(userName);
 		model.addAttribute("userInfo", userT);
 		return "userIndex";
+	}
+
+	@RequestMapping("/addressIndex")
+	public String addressIndex() {
+		return "addressInfo";
 	}
 }
