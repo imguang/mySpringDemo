@@ -1,7 +1,5 @@
 package demo3;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -15,7 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.imguang.demo.service.IProductService;
+import com.imguang.demo.model.Address;
+import com.imguang.demo.service.IAddressService;
 //import com.imguang.demo.model.UserT;
 import com.imguang.demo.service.IUserService;
 
@@ -31,26 +30,17 @@ public class mybatisTest {
 
 	@Resource
 	@Qualifier("ProductServiceImpl")
-	private IProductService productServiceImpl = null;
+	private IAddressService addressServiceImpl = null;
+	Address address;
 
 	@Before
 	public void before() {
 		ac = new ClassPathXmlApplicationContext("spring-mybatis.xml");
-		productServiceImpl = (IProductService) ac.getBean("productServiceImpl");
-		Map<String, Object> maps = new HashMap<String, Object>();
-		maps.put("limit", 5);
-		maps.put("offset", 0);
-	}
-
-	@Before
-	public void Before() {
-
+		addressServiceImpl = (IAddressService) ac.getBean("addressServiceImpl");
 	}
 
 	@Test
 	public void test1() {
-		System.out.println(productServiceImpl.selectLimit(5, 0));
-		System.out.println(userService.selectUserCnt());
-		System.out.println(userService.selectLimit(5, 0));
+		System.out.println(addressServiceImpl.deleteAddress(5, "imguang"));
 	}
 }

@@ -21,7 +21,7 @@ span {
 
 <body>
 	<div class="container">
-		<div class="row clearfix">
+		<div class="row clearfix" style="padding-bottom: 100px">
 			<div class="jumbotron">
 				<h1>个人主页</h1>
 			</div>
@@ -67,25 +67,41 @@ span {
 						<h4 class="modal-title" id="myModalLabel">新增地址</h4>
 					</div>
 					<div class="modal-body">
-						<form role="form" action="/admin/add" method="post" id="add_form">
+						<form role="form" id="add_form">
 							<div class="form-group">
-								<label for="exampleInputEmail1">账号：</label><input type="text"
-									class="form-control" name="userName" placeholder="账号"
-									id="loginUserName" />
+								<label for="exampleInputEmail1">收货地址：</label> <select
+									id="s_province" name="province"></select>   <select id="s_city"
+									name="city"></select>   <select id="s_county" name="district"></select>
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">邮政编码：</label> <input type="text"
+									name="code">
 							</div>
 							<div class="form-group t1">
-								<select name="province" id="province">
-								</select> <select name="city" id="city">
-								</select> <select name="county" id="county">
-								</select>
+								<label for="exampleInputEmail1">收件人：&nbsp&nbsp&nbsp</label> <input
+									type="text" name="realName">
 							</div>
-
+							<div class="form-group t1">
+								<label for="exampleInputEmail1">电话号码：</label> <input type="text"
+									name="phonenum">
+							</div>
+							<input type="hidden" value="${userName}" name="userName">
 						</form>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-						<button type="button" class="btn btn-primary" onclick="add_form()">增加</button>
+						<button type="button" class="btn btn-primary"
+							onclick="addAddress_form()">增加</button>
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="myModal" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body" id="show_content">这里是弹窗的内容</div>
 				</div>
 			</div>
 		</div>
@@ -100,7 +116,12 @@ span {
 		<script type="text/javascript"
 			src="<%=request.getContextPath()%>/resources/js/address_table.js"></script>
 		<script type="text/javascript"
-			src="<%=request.getContextPath()%>/resources/js/util/pccs.js"></script>
+			src="<%=request.getContextPath()%>/resources/js/util/area.js"></script>
+		<script type="text/javascript">
+			_init_area();
+		</script>
+		<script type="text/javascript"
+			src="<%=request.getContextPath()%>/resources/js/add_address.js"></script>
 </body>
 
 </html>

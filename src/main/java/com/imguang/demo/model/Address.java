@@ -96,4 +96,11 @@ public class Address {
 		this.code = code;
 		this.phonenum = phonenum;
 	}
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", userName=" + userName + ", realName=" + realName + ", province=" + province
+				+ ", city=" + city + ", district=" + district + ", code=" + code + ", phonenum=" + phonenum + "]";
+	}
+
 }

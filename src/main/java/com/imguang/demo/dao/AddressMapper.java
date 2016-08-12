@@ -1,17 +1,24 @@
 package com.imguang.demo.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.imguang.demo.model.Address;
 
 public interface AddressMapper {
-    int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-    int insert(Address record);
+	int deleteByPrimaryKeyAndUserName(Map<String, Object> map);
 
-    int insertSelective(Address record);
+	int insert(Address record);
 
-    Address selectByPrimaryKey(Integer id);
+	int insertSelective(Address record);
 
-    int updateByPrimaryKeySelective(Address record);
+	Address selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKey(Address record);
+	List<Address> selectAll(String userName);
+
+	int updateByPrimaryKeySelective(Address record);
+
+	int updateByPrimaryKey(Address record);
 }

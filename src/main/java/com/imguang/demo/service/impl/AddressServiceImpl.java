@@ -1,6 +1,9 @@
 package com.imguang.demo.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,9 +20,31 @@ public class AddressServiceImpl implements IAddressService {
 	AddressMapper addressMapper;
 
 	@Override
-	public List<Address> selectAllAddress() {
-//		addressMapper;
-		return null;
+	public List<Address> selectAllAddress(String userName) {
+		List<Address> addresses = new ArrayList<Address>();
+		addresses.addAll(addressMapper.selectAll(userName));
+		return addresses;
+	}
+
+	@Override
+	public boolean insertAddress(Address address) {
+		int re = addressMapper.insert(address);
+		if (re > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteAddress(Integer id, String userName) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("userName", userName);
+		int re = addressMapper.deleteByPrimaryKeyAndUserName(map);
+		if (re > 0) {
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -12,7 +12,8 @@
 		<result column="phoneNum" jdbcType="VARCHAR" property="phonenum" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, user_name, real_name, province, city, district, code, phoneNum
+		id, user_name, real_name, province, city, district, code,
+		phoneNum
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
@@ -21,18 +22,37 @@
 		from address
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from address where user_name = #{userName,jdbcType=VARCHAR}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from address
+		delete from
+		address
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.imguang.demo.model.Address">
-		insert into address (id, user_name, real_name,
+	<delete id="deleteByPrimaryKeyAndUserName" parameterType="java.util.Map">
+		delete from
+		address
+		where id = #{id,jdbcType=INTEGER} and user_name = #{userName,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.imguang.demo.model.Address"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into address (
+		user_name,
+		real_name,
 		province, city, district,
 		code, phoneNum)
-		values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
+		values
+		(
+		#{userName,jdbcType=VARCHAR},
 		#{realName,jdbcType=VARCHAR},
-		#{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR},
-		#{code,jdbcType=VARCHAR}, #{phonenum,jdbcType=VARCHAR})
+		#{province,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR},
+		#{district,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{phonenum,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.imguang.demo.model.Address">
 		insert into address
@@ -118,13 +138,17 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.imguang.demo.model.Address">
 		update address
-		set user_name = #{userName,jdbcType=VARCHAR},
-		real_name = #{realName,jdbcType=VARCHAR},
+		set
+		user_name = #{userName,jdbcType=VARCHAR},
+		real_name =
+		#{realName,jdbcType=VARCHAR},
 		province = #{province,jdbcType=VARCHAR},
 		city = #{city,jdbcType=VARCHAR},
-		district = #{district,jdbcType=VARCHAR},
+		district =
+		#{district,jdbcType=VARCHAR},
 		code = #{code,jdbcType=VARCHAR},
-		phoneNum = #{phonenum,jdbcType=VARCHAR}
+		phoneNum
+		= #{phonenum,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
