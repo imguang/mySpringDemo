@@ -25,12 +25,17 @@ p {
 
 body {
 	padding-top: 70px;
+	font: Verdana;
 }
 
 em {
 	color: #f40;
 	font-weight: 700;
 	font-size: 18px;
+}
+
+input, label {
+	vertical-align: middle;
 }
 </style>
 </head>
@@ -66,7 +71,20 @@ em {
 				</div>
 				<br />
 				<!-- 显示内容 -->
-				<strong>选择收货地址</strong> <br /> <br /> <br /> <strong>确认订单信息</strong><br />
+				<div>
+					<strong>选择收货地址</strong> <br />
+					<form action="" style="padding-left: 100px">
+						<c:forEach items="${addresses}" var="address" varStatus="status">
+							<div class="radio">
+								<label style="font-size: 12px;"><input type="radio"
+									<c:if test="${status.index == 0}">checked</c:if> name="address"
+									value=""> ${address.province} ${address.city}
+									${address.district}(${address.realName} 收)${address.phonenum}</label>
+							</div>
+						</c:forEach>
+					</form>
+				</div>
+				<br /> <br /> <strong>确认订单信息</strong><br />
 				<table class="table table-striped">
 					<form>
 						<thead>

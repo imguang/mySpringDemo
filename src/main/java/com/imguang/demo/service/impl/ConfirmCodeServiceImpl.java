@@ -20,13 +20,13 @@ import com.github.bingoohuang.patchca.filter.predefined.WobbleRippleFilterFactor
 import com.github.bingoohuang.patchca.font.RandomFontFactory;
 import com.github.bingoohuang.patchca.utils.encoder.EncoderHelper;
 import com.github.bingoohuang.patchca.word.RandomWordFactory;
-import com.imguang.demo.service.IConfirmCode;
+import com.imguang.demo.service.IConfirmCodeService;
 
 /*
  * 验证码service
  */
 @Service
-public class ConfirmCodeImpl implements IConfirmCode {
+public class ConfirmCodeServiceImpl implements IConfirmCodeService {
 
 	private static ConfigurableCaptchaService cs = new ConfigurableCaptchaService();
 	private static Random random = new Random();

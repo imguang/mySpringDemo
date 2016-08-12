@@ -1,7 +1,6 @@
 package com.imguang.demo.entity;
 
 import com.imguang.demo.model.Address;
-import com.sun.swing.internal.plaf.synth.resources.synth_it;
 
 public class AddressEntity {
 	private Integer id;

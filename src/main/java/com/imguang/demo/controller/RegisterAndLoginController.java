@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.imguang.demo.model.UserT;
-import com.imguang.demo.service.impl.ConfirmCodeImpl;
+import com.imguang.demo.service.impl.ConfirmCodeServiceImpl;
 import com.imguang.demo.service.impl.UserServiceImpl;
 import com.imguang.demo.util.Iconst.IconstLogin;
 
@@ -26,7 +26,7 @@ public class RegisterAndLoginController {
 	@Resource
 	UserServiceImpl UserServiceImpl;
 	@Resource
-	ConfirmCodeImpl confirmCodeImpl;
+	ConfirmCodeServiceImpl confirmCodeImpl;
 
 	@RequestMapping(value = "/RegisterAndLoginView", method = RequestMethod.GET)
 	public String showRegisterAndLoginView() {
