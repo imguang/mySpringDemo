@@ -24,10 +24,10 @@ public class UserInfoControl {
 	public String userIndex(@PathVariable("userName") String userName, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("userName") == null
+		/*if (session == null || session.getAttribute("userName") == null
 				|| !session.getAttribute("userName").equals(userName)) {
 			return "redirect:/count/RegisterAndLoginView";
-		}
+		}*/
 		UserT userT = userServiceImpl.selectUserByUserName(userName);
 		model.addAttribute("userInfo", userT);
 		return "userIndex";

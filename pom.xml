@@ -19,14 +19,11 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
 			<version>1.9</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>com.github.bingoohuang</groupId>
 			<artifactId>patchca</artifactId>

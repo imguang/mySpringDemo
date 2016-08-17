@@ -10,7 +10,7 @@
 %>
 <head>
 <meta charset="utf-8" />
-<title>bootstrap案例</title>
+<title>登录注册</title>
 <!--用百度的静态资源库的cdn安装bootstrap环境-->
 <!-- Bootstrap 核心 CSS 文件 -->
 <link

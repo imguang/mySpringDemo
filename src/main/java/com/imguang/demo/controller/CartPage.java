@@ -30,9 +30,9 @@ public class CartPage {
 		// 3@TODO
 		// 一些判断
 		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("userName") == null) {
+		/*if (session == null || session.getAttribute("userName") == null) {
 			return "redirect:/count/RegisterAndLoginView";
-		}
+		}*/
 		@SuppressWarnings("unchecked")
 		Map<Integer, Integer> cart = (Map<Integer, Integer>) session
 				.getAttribute("cart");
