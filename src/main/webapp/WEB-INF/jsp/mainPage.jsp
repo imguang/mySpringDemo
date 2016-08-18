@@ -62,7 +62,8 @@ body {
 					<c:forEach items="${products}" var="product" varStatus="status">
 						<div class="col-md-4 ">
 							<div class="thumbnail ">
-								<img alt="300x200 " src="${product.gImgurl }" />
+								<img class="lazy" alt="300x200 "
+									data-original="${product.gImgurl }" />
 								<div class="caption ">
 									<h3>${product.gName}</h3>
 									<p>¥${product.gPrice}</p>
@@ -122,5 +123,15 @@ body {
 		src="<%=request.getContextPath()%>/resources/js/jquery-3.0.0.min.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/util/jquery.lazyload.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("img.lazy").lazyload({
+				threshold : 100,
+				effect : "fadeIn",
+			});
+		});
+	</script>
 </body>
 </html>

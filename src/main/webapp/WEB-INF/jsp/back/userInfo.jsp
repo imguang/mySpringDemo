@@ -64,8 +64,7 @@
 								<h4 class="modal-title" id="myModalLabel">添加账号</h4>
 							</div>
 							<div class="modal-body">
-								<form role="form" action="/admin/add" method="post"
-									id="add_form">
+								<form role="form" id="add_form">
 									<div class="form-group">
 										<label for="exampleInputEmail1">账号：</label><input type="text"
 											class="form-control" name="userName" placeholder="账号"
@@ -91,7 +90,14 @@
 							</div>
 						</div>
 					</div>
-
+				</div>
+				<div class="modal fade" id="myModal" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body" id="show_content">这里是弹窗的内容</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

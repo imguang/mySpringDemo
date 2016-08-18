@@ -17,7 +17,7 @@ public interface IUserService {
 
 	public boolean deleteByPrimaryKey(int id);
 
-	public boolean resetPasswordByPrimaryKey(int id);
+	public String resetPasswordByPrimaryKey(int id);
 
 	public int selectUserCnt();
 

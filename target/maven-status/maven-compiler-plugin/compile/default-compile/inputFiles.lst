@@ -17,7 +17,6 @@ F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IUserServ
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\ajaxController\front\AddressMechod.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\model\UserT.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IConfirmCodeService.java
-F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\interceptor\Test1Interceptor.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\model\Product.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IMainPageService.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\ajaxController\back\backProductController.java
@@ -31,6 +30,7 @@ F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\util\Iconst\Icons
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\entity\CartItem.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\interceptor\LoginInterceptor.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\RegisterAndLoginController.java
+F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\ajaxController\back\UserInfoController.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\service\IAddressService.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\UserInfoControl.java
 F:\TotWorkspace\springMVC\demo3\src\main\java\com\imguang\demo\controller\OrderPage.java

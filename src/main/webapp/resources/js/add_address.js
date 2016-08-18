@@ -20,7 +20,7 @@ function addAddress_form() {
 			case "1":
 				$("#show_content").text("上传成功");
 				var tem = returndata.re;
-				$("#address_table").bootstrapTable('append', tem);
+				$("#user_table").bootstrapTable('append', tem);
 				break;
 			case "2":
 				$("#show_content").text("上传失败");

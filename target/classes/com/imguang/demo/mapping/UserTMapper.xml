@@ -56,9 +56,11 @@
 		delete from user_t
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.imguang.demo.model.UserT">
+	<insert id="insert" parameterType="com.imguang.demo.model.UserT"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into user_t (id,
-		user_name, password,
+		user_name,
+		password,
 		email)
 		values (#{id,jdbcType=INTEGER},
 		#{userName,jdbcType=VARCHAR},

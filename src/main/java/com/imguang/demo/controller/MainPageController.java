@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.imguang.demo.entity.PageInfo;
@@ -29,8 +28,7 @@ public class MainPageController {
 	IMainPageService mainPageServiceImpl;
 
 	@RequestMapping(value = "/index")
-	public String IndexPage(Model model, HttpServletRequest request,
-			HttpServletResponse response, PageInfo pageInfo) {
+	public String IndexPage(Model model, HttpServletRequest request, HttpServletResponse response, PageInfo pageInfo) {
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("userName") == null) {
 			model.addAttribute("state", "0");
@@ -40,16 +38,10 @@ public class MainPageController {
 		}
 		pageInfo = mainPageServiceImpl.dealPageInfo(pageInfo);
 		List<Product> products = new ArrayList<Product>();
-		products.addAll(productServiceImpl.selectLimit(
-				pageInfo.getOnePageNum(),
+		products.addAll(productServiceImpl.selectLimit(pageInfo.getOnePageNum(),
 				pageInfo.getOnePageNum() * (pageInfo.getNowPage() - 1)));
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("products", products);
 		return "mainPage";
-	}
-
-	@RequestMapping("/product/{id}")
-	public String showProductDetail(@PathVariable("id") int id) {
-		return null;
 	}
 }

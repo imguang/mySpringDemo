@@ -64,13 +64,14 @@ public class UserServiceImpl implements IUserService {
 		return false;
 	}
 
-	public boolean resetPasswordByPrimaryKey(int id) {
+	public String resetPasswordByPrimaryKey(int id) {
 		UserT userT = userTMapper.selectByPrimaryKey(id);
-		userT.setPassword(DigestUtils.sha1Hex("88888" + userT.getUserName()));
+		String resetPassword = DigestUtils.sha1Hex("88888" + userT.getUserName());
+		userT.setPassword(resetPassword);
 		if (userTMapper.updateByPrimaryKey(userT) != 0) {
-			return true;
+			return resetPassword;
 		}
-		return false;
+		return "0";
 	}
 
 	public int selectUserCnt() {
