@@ -1,6 +1,5 @@
 package demo3;
 
-
 import javax.annotation.Resource;
 
 //import org.apache.log4j.Logger;
@@ -15,8 +14,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.imguang.demo.model.Address;
 import com.imguang.demo.service.IAddressService;
+import com.imguang.demo.service.IOrderService;
 //import com.imguang.demo.model.UserT;
 import com.imguang.demo.service.IUserService;
+import com.imguang.demo.service.impl.OrderServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 // 表示继承了SpringJUnit4ClassRunner类
@@ -33,14 +34,21 @@ public class mybatisTest {
 	private IAddressService addressServiceImpl = null;
 	Address address;
 
+	@Resource
+	@Qualifier("OrderServiceImpl")
+	private IOrderService orderServiceImpl;
+
 	@Before
 	public void before() {
 		ac = new ClassPathXmlApplicationContext("spring-mybatis.xml");
 		addressServiceImpl = (IAddressService) ac.getBean("addressServiceImpl");
+		orderServiceImpl = (IOrderService) ac.getBean("orderServiceImpl");
 	}
 
 	@Test
 	public void test1() {
-		System.out.println(addressServiceImpl.deleteAddress(5, "imguang"));
+		// System.out.println(addressServiceImpl.deleteAddress(5, "imguang"));
+		System.out.println(orderServiceImpl.selectCasByPrimaryKeyOrder(1));
+		// System.out.println(orderServiceImpl.selectByPrimaryKeyOrder(1));
 	}
 }

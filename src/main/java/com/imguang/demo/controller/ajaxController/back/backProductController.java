@@ -22,6 +22,9 @@ import com.imguang.demo.model.UserT;
 import com.imguang.demo.service.IUserService;
 import com.imguang.demo.service.impl.ProductServiceImpl;
 
+/**
+ *商品页面的ajax操作
+ */
 @Controller
 @RequestMapping(value = "/backProductAjax")
 public class backProductController {
@@ -32,6 +35,13 @@ public class backProductController {
 	@Resource
 	IUserService userServiceImpl;
 
+	/**
+	 * 删除商品
+	 * @param id
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteOneProduct/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, String> deleteOneProduct(@PathVariable("id") int id,
@@ -57,7 +67,6 @@ public class backProductController {
 	/*
 	 * 分页请求用户信息
 	 */
-
 	@RequestMapping(value = "/selectLimitUser", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> selectLimitUser(int limit, int offset) {

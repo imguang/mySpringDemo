@@ -3,7 +3,6 @@ package com.imguang.demo.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,8 +22,8 @@ public class UserInfoControl {
 	@RequestMapping(value = "/userIndex/{userName}", method = RequestMethod.GET)
 	public String userIndex(@PathVariable("userName") String userName, HttpServletRequest request,
 			HttpServletResponse response, Model model) {
-		HttpSession session = request.getSession(false);
-		/*if (session == null || session.getAttribute("userName") == null
+		/*HttpSession session = request.getSession(false);
+		if (session == null || session.getAttribute("userName") == null
 				|| !session.getAttribute("userName").equals(userName)) {
 			return "redirect:/count/RegisterAndLoginView";
 		}*/

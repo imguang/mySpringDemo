@@ -21,7 +21,7 @@ public class CartItem {
 		gName = product.getgName();
 		gPrice = product.getgPrice();
 		gNum = product.getgNum();
-		gImgurl = "<img src='" + product.getgImgurl() + "' alt='20x20'/>";
+		gImgurl = "<img class='lazy' src='' data-original='" + product.getgImgurl() + "' alt='20x20'/>";
 	}
 
 	public int getNeedNum() {

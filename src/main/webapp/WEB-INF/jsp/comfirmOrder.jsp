@@ -144,6 +144,16 @@ input, label {
 		src="<%=request.getContextPath()%>/resources/js/jquery.json-2.4.js"></script>
 	<script type="text/javascript"
 		src="<%=request.getContextPath()%>/resources/js/cart_table.js"></script>
+	<script type="text/javascript"
+		src="<%=request.getContextPath()%>/resources/js/util/jquery.lazyload.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("img.lazy").lazyload({
+				threshold : 100,
+				effect : "fadeIn",
+			});
+		});
+	</script>
 </body>
 
 </html>

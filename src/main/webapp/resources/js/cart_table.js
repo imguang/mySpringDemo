@@ -56,38 +56,50 @@ $(".spinner").spinner({}).spinner('delay', 200) // delay in ms
 			}
 		});
 // 对删除按钮进行事件绑定
-$(".delete_btn").click(function() {
-	var id = $(this).val();
-	$.ajax({
-		url : '/cartAjax/deleteOneCart/' + id,
-		type : 'GET',
-		context : this,
-		async : false,
-		cache : false,
-		contentType : false,
-		processData : false,
-		dataType : "json",
-		success : function(returndata) {
-			var state = returndata.state;
-			switch (state) {
-			case "1":
-				$("#show_content").text("删除成功");
-				$(this).parent().parent().remove();
-				$(".badge").text(parseInt($(".badge").text()) - 1);
-				break;
-			case "0":
-				$("#show_content").text("不存在");
-				break;
-			}
-			$("#myModal").modal('show');
-			setTimeout("$('#myModal').modal('hide')", 500);
+$(".delete_btn").click(
+		function() {
+			var id = $(this).val();
+			$.ajax({
+				url : '/cartAjax/deleteOneCart/' + id,
+				type : 'GET',
+				context : this,
+				async : false,
+				cache : false,
+				contentType : false,
+				processData : false,
+				dataType : "json",
+				success : function(returndata) {
+					var state = returndata.state;
+					switch (state) {
+					case "1":
+						$("#show_content").text("删除成功");
+						$(this).parent().parent().remove();
+						var totParent = $(this).parent().parent();
+						if ($(totParent).find(".checkbox").prop('checked')) {
+							var price = parseInt($(totParent).find(".price")
+									.text());
+							var needNum = parseInt($(totParent)
+									.find(".needNum").val());
+							var tot_num = parseInt($('#tot_num').text());
+							var tot_money = parseInt($('#tot_money').text());
+							$('#tot_num').text(tot_num - 1);
+							$('#tot_money').text(tot_money - price * needNum);
+						}
+						$(".badge").text(parseInt($(".badge").text()) - 1);
+						break;
+					case "0":
+						$("#show_content").text("不存在");
+						break;
+					}
+					$("#myModal").modal('show');
+					setTimeout("$('#myModal').modal('hide')", 500);
 
-		},
-		error : function(returndata) {
-			alert("failed!");
-		}
-	});
-});
+				},
+				error : function(returndata) {
+					alert("failed!");
+				}
+			});
+		});
 $("#summary").click(function() {
 	var id = new Array();
 	var needNum = new Array();

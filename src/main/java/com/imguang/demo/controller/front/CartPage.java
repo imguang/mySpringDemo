@@ -1,4 +1,4 @@
-package com.imguang.demo.controller;
+package com.imguang.demo.controller.front;
 
 import java.util.ArrayList;
 import java.util.List;
