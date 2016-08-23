@@ -117,7 +117,7 @@ $("#summary").click(function() {
 		console.log(JSON.stringify(id));
 		console.log(JSON.stringify(needNum));
 		var form = $('<form></form>');
-		form.attr('action', '/order');
+		form.attr('action', '/order/show');
 		form.attr('method', 'post');
 		form.attr('target', '_self');
 		var id_input = $('<input type="text" name="ids" />');

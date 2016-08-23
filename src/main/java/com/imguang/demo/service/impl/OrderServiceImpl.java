@@ -1,9 +1,11 @@
 package com.imguang.demo.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.imguang.demo.dao.OrderItemMapper;
 import com.imguang.demo.dao.OrderTotMapper;
 import com.imguang.demo.model.OrderItem;
@@ -32,6 +34,14 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public OrderTot selectByPrimaryKeyOrder(Integer id) {
 		return orderTotMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	@Transactional
+	public OrderTot insertOrderAndOrderItem(List<OrderItem> orderItems, OrderTot orderTot) {
+		orderTotMapper.insert(orderTot);
+		orderItemMapper.insertBatch(orderItems);
+		return orderTotMapper.selectCasByPrimaryKey(orderTot.getId());
 	}
 
 }

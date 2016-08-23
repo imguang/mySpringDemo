@@ -47,7 +47,7 @@
 		order_tot
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.imguang.demo.model.OrderTot">
+	<insert id="insert" parameterType="com.imguang.demo.model.OrderTot" useGeneratedKeys="true" keyProperty="id">
 		insert into order_tot (id,
 		orderId, user_name,
 		tot_money, o_state, addressId

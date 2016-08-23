@@ -47,15 +47,34 @@
 		order_item
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.imguang.demo.model.OrderItem">
+	<insert id="insert" parameterType="com.imguang.demo.model.OrderItem"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into order_item (id,
 		orderId, productId,
-		p_num, p_price)
+		p_num,
+		p_price)
 		values (#{id,jdbcType=INTEGER},
 		#{orderid,jdbcType=VARCHAR},
 		#{productid,jdbcType=INTEGER},
-		#{pNum,jdbcType=INTEGER}, #{pPrice,jdbcType=DOUBLE})
+		#{pNum,jdbcType=INTEGER},
+		#{pPrice,jdbcType=DOUBLE})
 	</insert>
+
+	<insert id="insertBatch" parameterType="java.util.List"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into order_item (id,
+		orderId, productId,
+		p_num, p_price)
+		values
+		<foreach collection="list" item="item" separator=",">
+			(#{item.id,jdbcType=INTEGER},
+			#{item.orderid,jdbcType=VARCHAR},
+			#{item.productid,jdbcType=INTEGER},
+			#{item.pNum,jdbcType=INTEGER},
+			#{item.pPrice,jdbcType=DOUBLE})
+		</foreach>
+	</insert>
+
 	<insert id="insertSelective" parameterType="com.imguang.demo.model.OrderItem">
 		insert into order_item
 		<trim prefix="(" suffix=")" suffixOverrides=",">

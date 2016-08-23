@@ -73,41 +73,48 @@ input, label {
 				<!-- 显示内容 -->
 				<div>
 					<strong>选择收货地址</strong> <br />
-					<form action="" style="padding-left: 100px">
+					<form id="form" action="/order/comfirm" method="post"
+						style="padding-left: 100px">
 						<c:forEach items="${addresses}" var="address" varStatus="status">
 							<div class="radio">
 								<label style="font-size: 12px;"><input type="radio"
-									<c:if test="${status.index == 0}">checked</c:if> name="address"
-									value=""> ${address.province} ${address.city}
+									<c:if test="${status.index == 0}">checked</c:if>
+									name="addressId" value="${address.id}">
+									${address.province} ${address.city}
 									${address.district}(${address.realName} 收)${address.phonenum}</label>
 							</div>
+						</c:forEach>
+						<c:forEach items="${cartItems}" var="item" varStatus="status">
+							<input type="text" name="productId" value="${item.id}" hidden>
+							<input type="text" name="needNum" value="${item.needNum}"
+								hidden>
+							<input type="text" name="totPrice"
+								value="${item.needNum * item.gPrice}" hidden>
 						</c:forEach>
 					</form>
 				</div>
 				<br /> <br /> <strong>确认订单信息</strong><br />
 				<table class="table table-striped">
-					<form>
-						<thead>
+					<thead>
+						<tr>
+							<th>图片</th>
+							<th>名称</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>小计</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${cartItems}" var="item" varStatus="status">
 							<tr>
-								<th>图片</th>
-								<th>名称</th>
-								<th>单价</th>
-								<th>数量</th>
-								<th>小计</th>
+								<th>${item.gImgurl}</th>
+								<th>${item.gName}</th>
+								<th>${item.gPrice}</th>
+								<th>${item.needNum}</th>
+								<th>${item.needNum * item.gPrice}</th>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${cartItems}" var="item" varStatus="status">
-								<tr>
-									<th>${item.gImgurl}</th>
-									<th>${item.gName}</th>
-									<th>${item.gPrice}</th>
-									<th>${item.needNum}</th>
-									<th>${item.needNum * item.gPrice}</th>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</form>
+						</c:forEach>
+					</tbody>
 				</table>
 				<div class="pull-right">
 					<p class="money">
@@ -116,7 +123,8 @@ input, label {
 					</p>
 					<br />
 					<div>
-						<button class="btn btn-danger pull-right">提交订单</button>
+						<button class="btn btn-danger pull-right"
+							onclick="$('#form').submit()">提交订单</button>
 					</div>
 				</div>
 			</div>
