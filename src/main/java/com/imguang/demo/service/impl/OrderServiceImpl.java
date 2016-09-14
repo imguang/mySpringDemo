@@ -44,4 +44,10 @@ public class OrderServiceImpl implements IOrderService {
 		return orderTotMapper.selectCasByPrimaryKey(orderTot.getId());
 	}
 
+	@Override
+	public List<OrderTot> selectCasByUserNameOrder(String userName) {
+		List<OrderTot> orderTots = orderTotMapper.selectCasByUserName(userName);
+		return orderTots;
+	}
+
 }

@@ -12,7 +12,6 @@ body {
 	padding-top: 70px;
 }
 .table th, .table td {
-	text-align: center;
 	vertical-align: middle !important;
 	height: 38px;
 }
@@ -43,7 +42,7 @@ body {
 							<ul class="nav navbar-nav">
 								<li><a href="/main/index">商品</a></li>
 								<li><a href="/cart">购物车<span class="badge">${cartNum}</span></a></li>
-								<li><a href="/order/total">订单中心</a></li>
+								<li class="active"><a href="#">订单中心</a></li>
 								<li class="disabled "><a href="# ">more...</a></li>
 							</ul>
 							<p class="navbar-text navbar-right" style="padding-right: 30px">
@@ -58,63 +57,43 @@ body {
 					</nav>
 				</div>
 				<div>
-					<ol class="ui-step ui-step-yellow ui-step-3">
-						<li class="step-start step-done">
-							<div class="ui-step-line"></div>
-							<div class="ui-step-cont">
-								<span class="ui-step-cont-number">1</span> <span
-									class="ui-step-cont-text">查看购物车</span>
-							</div>
-						</li>
-						<li class="step-done">
-							<div class="ui-step-line"></div>
-							<div class="ui-step-cont">
-								<span class="ui-step-cont-number">2</span> <span
-									class="ui-step-cont-text">确认订单</span>
-							</div>
-						</li>
-						
-						<li class="step-end step-active">
-							<div class="ui-step-line"></div>
-							<div class="ui-step-cont">
-								<span class="ui-step-cont-number">3</span> <span
-									class="ui-step-cont-text">完成订单</span>
-							</div>
-						</li>
-					</ol>
-				</div>
-				<br />
-				<!-- 显示内容 -->
-				<div>
-					<table class="table table-bordered" align="center">
+					<table class="table table-bordered">
                         <thead>
-                            <tr>
-								<strong>订单编号：${OrderInfo.orderid}&nbsp;&nbsp;&nbsp;&nbsp;收货人：${OrderInfo.address.realName}&nbsp;&nbsp;&nbsp;&nbsp;收货地址:${OrderInfo.address.province}${OrderInfo.address.city}${OrderInfo.address.district}</strong>
-							</tr>
-                            <tr>
-                                <td>名称</td>
+                            <tr align="center">
+								<td>编号</td>
+								<td>名称</td>
                                 <td>商品数量</td>
 								<td>商品总额</td>
 								<td>订单总额</td>
 								<td>订单状态</td>
 							</tr>
-							
 						</thead>
 						<tbody>
-							#foreach($item in $OrderInfo.orderItems)
+							#foreach($OrderInfo in $totalOrders)
+								#set($num = ${OrderInfo.orderItems.size()} + 1)
     							<tr>
-                                        <td>${item.product.gName}</td>
-										<td>${item.pNum}</td>
-										<td>￥${item.pPrice}</td>
-										#if($loopCounter == 0)
-                                            <td rowspan="${OrderInfo.orderItems.size()}"><strong>￥${OrderInfo.totMoney}</strong></td>
-                                            <td rowspan="${OrderInfo.orderItems.size()}">
-											#if(${OrderInfo.oState} == 1)
-												等待付款
-											#end
-											</td>
-										#end
-                                </tr>
+									<td rowspan="$num" colspan="1" align="center">
+										$foreach.count
+									</td>
+									<td colspan="5">
+										<strong>订单编号：${OrderInfo.orderid}&nbsp;&nbsp;&nbsp;&nbsp;收货人：${OrderInfo.address.realName}&nbsp;&nbsp;&nbsp;&nbsp;收货地址:${OrderInfo.address.province}${OrderInfo.address.city}${OrderInfo.address.district}</strong>
+									</td>
+								</tr>
+    							#foreach($item in $OrderInfo.orderItems)
+        							<tr  align="center">
+                                            <td>${item.product.gName}</td>
+    										<td>${item.pNum}</td>
+    										<td>￥${item.pPrice}</td>
+    										#if($loopCounter == 0)
+                                                <td rowspan="${OrderInfo.orderItems.size()}"><strong>￥${OrderInfo.totMoney}</strong></td>
+                                                <td rowspan="${OrderInfo.orderItems.size()}">
+    											#if(${OrderInfo.oState} == 1)
+    												等待付款
+    											#end
+    											</td>
+    										#end
+                                    </tr>
+    							#end
 							#end
                         </tbody>
 					</table>

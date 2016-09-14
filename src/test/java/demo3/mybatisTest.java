@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.imguang.demo.model.Address;
 import com.imguang.demo.model.OrderItem;
+import com.imguang.demo.model.OrderTot;
 import com.imguang.demo.service.IAddressService;
 import com.imguang.demo.service.IOrderService;
 //import com.imguang.demo.model.UserT;
@@ -49,24 +50,14 @@ public class mybatisTest {
 		ac = new ClassPathXmlApplicationContext("spring-mybatis.xml");
 		addressServiceImpl = (IAddressService) ac.getBean("addressServiceImpl");
 		orderServiceImpl = (IOrderService) ac.getBean("orderServiceImpl");
-		OrderItem orderItem = new OrderItem();
-		orderItem.setOrderid("12345");
-		orderItem.setpNum(100);
-		orderItem.setpPrice(1000.0);
-		orderItem.setProductid(12);
-
-		OrderItem orderItem2 = new OrderItem();
-		orderItem2.setOrderid("12345");
-		orderItem2.setpNum(100);
-		orderItem2.setpPrice(1000.0);
-		orderItem2.setProductid(13);
-
-		orderItems.add(orderItem);
-		orderItems.add(orderItem2);
+	
 	}
 
 	@Test
 	public void test1() {
+		List<OrderTot> orderTots = orderServiceImpl.selectCasByUserNameOrder("imguang");
+		System.out.println(orderTots);
+		System.out.println(orderTots.size());
 //		int i = orderServiceImpl.insertOrder(orderItems);
 //		System.out.println(i);
 		// System.out.println(addressServiceImpl.deleteAddress(5, "imguang"));

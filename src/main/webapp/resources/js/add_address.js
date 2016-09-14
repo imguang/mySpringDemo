@@ -15,15 +15,16 @@ function addAddress_form() {
 		processData : false,
 		success : function(returndata) {
 			var state = returndata.state;
-			console.log(state);
+			console.log(returndata);
 			switch (state) {
 			case "1":
-				$("#show_content").text("上传成功");
+				$("#show_content").text("增加成功");
 				var tem = returndata.re;
-				$("#user_table").bootstrapTable('append', tem);
+				console.log(tem);
+				$("#address_table").bootstrapTable('append', tem);
 				break;
 			case "2":
-				$("#show_content").text("上传失败");
+				$("#show_content").text("增加失败");
 				break;
 			}
 			$("#myModal").modal('show');

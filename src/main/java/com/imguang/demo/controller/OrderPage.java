@@ -36,6 +36,33 @@ public class OrderPage {
 	@Resource
 	IOrderService orderServiceImpl;
 
+
+	@RequestMapping("/total")
+	public ModelAndView totalOrder(HttpSession session){
+		ModelAndView modelAndView = new ModelAndView();
+		String userName = (String) session.getAttribute("userName");
+		List<OrderTot> orderTots = new ArrayList<OrderTot>();
+		orderTots.addAll(orderServiceImpl.selectCasByUserNameOrder(userName));
+		modelAndView.setViewName("front/TotalOrder");
+		modelAndView.addObject("totalOrders", orderTots);
+		
+		Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
+		modelAndView.addObject("cartNum", cart == null ? 0 : cart.size());
+		modelAndView.addObject("userName",userName);
+		return modelAndView;
+	}
+	
+	
+	/**
+	 * 确认订单
+	 * @param ids
+	 * @param needNums
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/show")
 	public String showPage(@RequestParam("ids") List<String> ids, @RequestParam("needNums") List<String> needNums,
 			Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -67,6 +94,7 @@ public class OrderPage {
 	}
 
 	/**
+	 * 订单完成
 	 * @param productId
 	 * @param needNum
 	 * @param totPrice
@@ -117,7 +145,7 @@ public class OrderPage {
 		for (int i = 0; i < size; i++) {
 			cart.remove(productId.get(i));
 		}
-		session.setAttribute("cart", cart);
+		//session.setAttribute("cart", cart);
 
 		modelAndView.addObject("OrderInfo", orderTot);
 		modelAndView.setViewName("/front/OrderFinish");

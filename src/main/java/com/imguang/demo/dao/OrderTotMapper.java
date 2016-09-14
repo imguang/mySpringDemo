@@ -1,5 +1,7 @@
 package com.imguang.demo.dao;
 
+import java.util.List;
+
 import com.imguang.demo.model.OrderTot;
 
 public interface OrderTotMapper {
@@ -10,6 +12,8 @@ public interface OrderTotMapper {
     int insertSelective(OrderTot record);
 
     OrderTot selectByPrimaryKey(Integer id);
+    
+    List<OrderTot> selectCasByUserName(String userName);
 
     int updateByPrimaryKeySelective(OrderTot record);
 

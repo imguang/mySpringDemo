@@ -10,6 +10,8 @@ public interface IOrderService {
 
 	public OrderTot selectCasByPrimaryKeyOrder(Integer id);
 
+	public List<OrderTot> selectCasByUserNameOrder(String userName);
+	
 	public OrderTot selectByPrimaryKeyOrder(Integer id);
 
 	public OrderTot insertOrderAndOrderItem(List<OrderItem> orderItems, OrderTot orderTot);

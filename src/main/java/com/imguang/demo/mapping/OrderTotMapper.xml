@@ -35,6 +35,14 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 
+	<select id="selectCasByUserName" resultMap="casResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from order_tot
+		where user_name = #{userName,jdbcType=VARCHAR}
+	</select>
+
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
@@ -42,12 +50,14 @@
 		from order_tot
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		order_tot
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="com.imguang.demo.model.OrderTot" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="com.imguang.demo.model.OrderTot"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into order_tot (id,
 		orderId, user_name,
 		tot_money, o_state, addressId

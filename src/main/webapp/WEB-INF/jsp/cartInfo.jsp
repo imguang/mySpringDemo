@@ -61,7 +61,7 @@ em {
 								<li><a href="/main/index">商品</a></li>
 								<li class="active"><a href="/cart">购物车<span
 										class="badge">${fn:length(cart)}</span></a></li>
-								<li><a href="#">订单中心</a></li>
+								<li><a href="/order/total">订单中心</a></li>
 								<li class="disabled "><a href="# ">more...</a></li>
 							</ul>
 							<p class="navbar-text navbar-right" style="padding-right: 30px">
