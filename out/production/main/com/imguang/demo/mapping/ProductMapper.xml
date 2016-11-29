@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imguang.demo.dao.ProductMapper">
+	<resultMap id="BaseResultMap" type="com.imguang.demo.model.Product">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="g_name" property="gName" jdbcType="VARCHAR" />
+		<result column="g_price" property="gPrice" jdbcType="DECIMAL" />
+		<result column="g_num" property="gNum" jdbcType="INTEGER" />
+		<result column="g_imgurl" property="gImgurl" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.imguang.demo.model.Product"
+		extends="BaseResultMap">
+		<result column="g_description" property="gDescription"
+			jdbcType="LONGVARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, g_name, g_price, g_num, g_imgurl
+	</sql>
+	<sql id="Blob_Column_List">
+		g_description
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from products
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAllProducts" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from products
+	</select>
+	<select id="selectProductCnt" resultType="java.lang.Integer">
+		select count(id) from
+		products
+	</select>
+	<select id="selectLimit" resultMap="ResultMapWithBLOBs"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from products order by id limit
+		#{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		products
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.imguang.demo.model.Product">
+		insert into products (id,
+		g_name, g_price,
+		g_num, g_imgurl, g_description
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR},
+		#{gPrice,jdbcType=DECIMAL},
+		#{gNum,jdbcType=INTEGER},
+		#{gImgurl,jdbcType=VARCHAR}, #{gDescription,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.imguang.demo.model.Product">
+		insert into products
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="gName != null">
+				g_name,
+			</if>
+			<if test="gPrice != null">
+				g_price,
+			</if>
+			<if test="gNum != null">
+				g_num,
+			</if>
+			<if test="gImgurl != null">
+				g_imgurl,
+			</if>
+			<if test="gDescription != null">
+				g_description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="gName != null">
+				#{gName,jdbcType=VARCHAR},
+			</if>
+			<if test="gPrice != null">
+				#{gPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="gNum != null">
+				#{gNum,jdbcType=INTEGER},
+			</if>
+			<if test="gImgurl != null">
+				#{gImgurl,jdbcType=VARCHAR},
+			</if>
+			<if test="gDescription != null">
+				#{gDescription,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.imguang.demo.model.Product">
+		update products
+		<set>
+			<if test="gName != null">
+				g_name = #{gName,jdbcType=VARCHAR},
+			</if>
+			<if test="gPrice != null">
+				g_price = #{gPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="gNum != null">
+				g_num = #{gNum,jdbcType=INTEGER},
+			</if>
+			<if test="gImgurl != null">
+				g_imgurl = #{gImgurl,jdbcType=VARCHAR},
+			</if>
+			<if test="gDescription != null">
+				g_description = #{gDescription,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.imguang.demo.model.Product">
+		update
+		products
+		set g_name = #{gName,jdbcType=VARCHAR},
+		g_price =
+		#{gPrice,jdbcType=DECIMAL},
+		g_num = #{gNum,jdbcType=INTEGER},
+		g_imgurl =
+		#{gImgurl,jdbcType=VARCHAR},
+		g_description =
+		#{gDescription,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.imguang.demo.model.Product">
+		update products
+		set g_name = #{gName,jdbcType=VARCHAR},
+		g_price =
+		#{gPrice,jdbcType=DECIMAL},
+		g_num = #{gNum,jdbcType=INTEGER},
+		g_imgurl =
+		#{gImgurl,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

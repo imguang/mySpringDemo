@@ -24,7 +24,6 @@ import com.imguang.demo.util.DateFormatUtil;
 @Service
 public class ProductServiceImpl implements IProductService {
 
-	@Resource
 	ProductMapper productMapper;
 
 	public String insertProduct(Product product) {

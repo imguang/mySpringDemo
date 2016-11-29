@@ -17,7 +17,7 @@ import com.imguang.demo.service.IUserService;
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 
-	@Resource
+
 	private UserTMapper userTMapper;
 
 	public UserT getUserById(int userId) {
